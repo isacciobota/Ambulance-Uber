@@ -15,7 +15,9 @@ Utilizatorii platformei se vor imparti in 3 categorii: **paramedic** , **doctor*
 ![High Level System Design](https://user-images.githubusercontent.com/80629738/161974375-746085a2-0fc7-47cc-aabe-0e209f77bcb8.png)
 
 ### Tehnologii alese
-*to be added
+* React Native
+* Node.js
+* Mongodb as database
 
 ### Echipa
 * Bancila Emanuel
