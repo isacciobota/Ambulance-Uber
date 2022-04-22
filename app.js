@@ -9,8 +9,10 @@ app.use(bodyParser.json());
 
 // Import routes
 const doctorRoutes = require('./routes/doctorRoutes');
+const hospitalRoutes = require('./routes/hospitalRoutes');
 
 app.use('/doctors', doctorRoutes);
+app.use('/hospitals', hospitalRoutes);
 
 // Connect to db
 mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true })
