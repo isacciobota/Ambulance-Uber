@@ -4,6 +4,7 @@ import { View, Text, StyleSheet, Dimensions, SafeAreaView, TextInput, KeyboardAv
 import Svg, {Image} from 'react-native-svg'
 import Animated, { EasingNode } from 'react-native-reanimated';
 import { TapGestureHandler, State, GestureHandlerRootView } from 'react-native-gesture-handler';
+//Icons
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Feather from "react-native-vector-icons/Feather";
 
@@ -155,7 +156,7 @@ class SignInScreen extends Component {
           top:null, justifyContent: 'center', backgroundColor: '#fff', borderTopLeftRadius: 30, borderTopRightRadius: 30,}}>
             <TapGestureHandler onHandlerStateChange={this.onCloseState}>
               <Animated.View style={styles.closeButton}>
-                <Animated.Text style={{fontSize:13, transform:[{rotate: concat(this.rotateCross, 'deg')}] }}>
+                <Animated.Text style={{fontSize:13, transform:[{rotate: concat(this.rotateCross, 'deg')}], color: '#1c92ab'}}>
                   X
                 </Animated.Text>
               </Animated.View>
@@ -172,9 +173,11 @@ class SignInScreen extends Component {
                   <TextInput placeholder="Your password" secureTextEntry={true} style={styles.textInput} autoCapitalize="none" placeholderTextColor="grey"/>
                 </View>
             </SafeAreaView>
-            <Animated.View style={styles.signInButton}>
-              <Text onPress={this.onPressButton.bind(this)} style={{ fontSize: 18, fontWeight: 'bold', color:'white'}}>SIGN IN</Text>
+            <TapGestureHandler onHandlerStateChange={this.onPressButton.bind(this)}>
+            <Animated.View style={styles.signInButton} >
+              <Text style={{ fontSize: 18, fontWeight: 'bold', color:'white'}}>SIGN IN</Text>
             </Animated.View>
+            </TapGestureHandler>
           </Animated.View>
         </View>
       </GestureHandlerRootView>
@@ -221,14 +224,14 @@ const styles = StyleSheet.create({
     borderColor:'white'
   },
   closeButton:{
-    height:40,
-    width:40,
+    height:30,
+    width:30,
     backgroundColor: 'white',
     borderRadius:20,
     alignItems: 'center',
     justifyContent: 'center',
     position: 'absolute',
-    top: -20,
+    top: -15,
     left: width/2-20,
     shadowOffset:{ width:2, height:2},
     shadowColor: 'black',
