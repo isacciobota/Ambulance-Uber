@@ -1,8 +1,14 @@
 import React, {Component} from 'react';
+import 'react-native-gesture-handler';
+import { createStackNavigator } from '@react-navigation/stack';
 import { StyleSheet, Text, View } from 'react-native';
 import { Asset } from 'expo-asset';
 import AppLoading from 'expo-app-loading';
-import MusicApp from './app/index';
+//React navigation stack
+import RootStack from './screens/RootStack';
+//Screens
+import SignInScreen from './screens/SignInScreen';
+import AdministratorScreen from './screens/AdministratorScreen';
 
 const styles = StyleSheet.create({
   container: {
@@ -21,6 +27,17 @@ function cacheImages(images) {
       return Asset.fromModule(image).downloadAsync();
     }
   });
+}
+
+const Stack = createStackNavigator();
+
+function MyStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="SignIn" component={SignInScreen} />
+      <Stack.Screen name="Administrator" component={AdministratorScreen} />
+    </Stack.Navigator>
+  );
 }
 
 export default class App extends Component {
@@ -46,6 +63,8 @@ export default class App extends Component {
         />
       );
     }
-    return <MusicApp />;
+    return (
+      <RootStack/>
+    );
   }
 }
