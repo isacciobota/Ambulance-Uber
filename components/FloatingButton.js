@@ -1,16 +1,16 @@
 import React from 'react'
-import { View, Text, StyleSheet, Animated, TouchableWithoutFeedback} from 'react-native';
+import { View, Text, StyleSheet, Animated, TouchableWithoutFeedback, Dimensions} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 //Icons
 import AntDesign from "react-native-vector-icons/AntDesign";
-import Entypo from "react-native-vector-icons/Entypo";
-import FontAwesome from "react-native-vector-icons/FontAwesome5";
+
+const { width, height } = Dimensions.get('window');
 
 function GoToButton({name, address}) {
   const navigation = useNavigation();
 
   return (
-    <Text style={{ fontSize: 16, color:'gray'}} onPress={() => navigation.navigate(address)}>{name}</Text>
+    <Text style={{ fontSize: 16, color:'black'}} onPress={() => navigation.navigate(address)}>{name}</Text>
   );
 }
 
@@ -38,7 +38,7 @@ class FloatingButton extends React.Component {
         {
           translateY: this.animation.interpolate({
             inputRange: [0, 1],
-            outputRange: [0, -50]
+            outputRange: [0, -40]
           })
         }
       ]
@@ -50,7 +50,7 @@ class FloatingButton extends React.Component {
         {
           translateY: this.animation.interpolate({
             inputRange: [0, 1],
-            outputRange: [0, -100]
+            outputRange: [0, -80]
           })
         }
       ]
@@ -62,7 +62,7 @@ class FloatingButton extends React.Component {
         {
           translateY: this.animation.interpolate({
             inputRange: [0, 1],
-            outputRange: [0, -150]
+            outputRange: [0, -120]
           })
         }
       ]
@@ -74,7 +74,7 @@ class FloatingButton extends React.Component {
         {
           translateY: this.animation.interpolate({
             inputRange: [0, 1],
-            outputRange: [0, -200]
+            outputRange: [0, -160]
           })
         }
       ]
@@ -95,7 +95,7 @@ class FloatingButton extends React.Component {
       <View style={[styles.container, this.props.style]}>
         <TouchableWithoutFeedback> 
             <Animated.View style={[styles.secondary, button4]} >
-              <GoToButton name="Add Doctor" address="ParamedicFormScreen"/>
+              <GoToButton name="Add Doctor" address="DoctorFormScreen"/>
             </Animated.View>
         </TouchableWithoutFeedback>
 
@@ -107,13 +107,13 @@ class FloatingButton extends React.Component {
 
         <TouchableWithoutFeedback>
             <Animated.View style={[styles.secondary, button2]}>
-              <GoToButton name="Add Hospital" address="ParamedicFormScreen"/>
+              <GoToButton name="Add Hospital" address="HospitalFormScreen"/>
             </Animated.View>
         </TouchableWithoutFeedback>
 
         <TouchableWithoutFeedback>
             <Animated.View style={[styles.secondary, button1]}>
-              <GoToButton name="Add Administrator" address="ParamedicFormScreen"/>
+              <GoToButton name="Add Administrator" address="AdministratorFormScreen"/>
             </Animated.View>
         </TouchableWithoutFeedback>
 
@@ -151,9 +151,15 @@ const styles = StyleSheet.create({
     backgroundColor: "#1c92ab",
   },
   secondary: {
+    width: width/2,
+    padding: 10,
     position: "absolute",
     backgroundColor: "#FFF",
     alignItems: "center",
     justifyContent: "center",
+  },
+  last: {
+    borderBottomColor: "#1c92ab",
+    borderBottomWidth: 2,
   }
 });

@@ -35,10 +35,10 @@ export default function AdministratorScreen() {
             tabBarIcon: ({focused}) => {
               return focused ? (
               <View style={styles.tabBarIconFocused} >
-                <FontAwesome name="user-nurse" size={25} color='#1c92ab'/>
+                <FontAwesome style={styles.entityIcon} name="stethoscope" size={23} color='#1c92ab'/> 
               </View>) : (
               <View style={styles.tabBarIcon}>
-                <FontAwesome name="user-nurse" size={25} color='gray'/>
+                <FontAwesome style={styles.entityIcon} name="stethoscope" size={23} color='grey'/> 
               </View>)
               },
           }}
@@ -48,10 +48,10 @@ export default function AdministratorScreen() {
             tabBarIcon: ({focused}) => {
               return focused ? (
                 <View style={styles.tabBarIconFocused}>
-                  <FontAwesome name="ambulance" size={25} color='#1c92ab'/>
+                  <FontAwesome name="ambulance" size={23} color='#1c92ab'/>
                 </View>) : (
                 <View style={styles.tabBarIcon}>
-                  <FontAwesome name="ambulance" size={25} color='gray'/>
+                  <FontAwesome name="ambulance" size={23} color='gray'/>
                 </View>)
               },
           }}
@@ -71,10 +71,10 @@ export default function AdministratorScreen() {
             tabBarIcon: ({focused}) => {
               return focused ? (
               <View style={styles.tabBarIconFocused}>
-                <FontAwesome name="hospital-alt" size={25} color='#1c92ab'/>
+                <FontAwesome name="hospital-alt" size={23} color='#1c92ab'/>
               </View>) : (
               <View style={styles.tabBarIcon}>
-                <FontAwesome name="hospital-alt" size={25} color='gray'/>
+                <FontAwesome name="hospital-alt" size={23} color='gray'/>
               </View>)
               },
           }}
@@ -84,10 +84,10 @@ export default function AdministratorScreen() {
             tabBarIcon: ({focused}) => {
               return focused ? (
               <View style={styles.tabBarIconFocused}>
-                <MaterialIcons name="engineering" size={31} color='#1c92ab'/>
+                <FontAwesome style={styles.entityIcon} name="wrench" size={23} color='#1c92ab'/> 
               </View>) : (
               <View style={styles.tabBarIcon}>
-                <MaterialIcons name="engineering" size={31} color='gray'/>
+                <FontAwesome style={styles.entityIcon} name="wrench" size={23} color='grey'/> 
               </View>)
               },
           }}

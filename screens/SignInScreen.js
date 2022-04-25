@@ -64,6 +64,7 @@ class SignInScreen extends Component {
     this.buttonOpacity = new Value(1);
     this.pointerEvents = new Value('none');
     this.onPressButton = this.onPressButton.bind(this);
+    this.showTheThing = false;
 
     this.onStateChange = event([
       {
@@ -167,11 +168,16 @@ class SignInScreen extends Component {
                   <FontAwesome name="user-o" color='#1c92ab' size={20}/>
                   <TextInput placeholder="Your username" style={styles.textInput} placeholderTextColor="grey"/>
                 </View>
-                <Text style={{...styles.text_footer, marginTop:25}}>Password</Text>
+                <Text style={{...styles.text_footer, marginTop:15}}>Password</Text>
                 <View style={styles.action}>
                   <Feather name="lock" color='#1c92ab' size={20}/>
                   <TextInput placeholder="Your password" secureTextEntry={true} style={styles.textInput} autoCapitalize="none" placeholderTextColor="grey"/>
                 </View>
+                { this.showTheThing &&
+                  (<View style={{alignItems: 'center', justifyContent: 'center'}}>
+                    <Text style={{color:'red', fontSize:15, marginTop: 10}}>Wrong username or password</Text> 
+                  </View>)
+                }
             </SafeAreaView>
             <TapGestureHandler onHandlerStateChange={this.onPressButton.bind(this)}>
             <Animated.View style={styles.signInButton} >
@@ -199,7 +205,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   signInButton: {
-    marginTop:25,
+    marginTop:10,
     backgroundColor: '#1c92ab',
     height: 60,
     marginHorizontal:30,

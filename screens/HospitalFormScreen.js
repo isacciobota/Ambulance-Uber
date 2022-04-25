@@ -1,9 +1,10 @@
 import {Text, View, StyleSheet, Dimensions, SafeAreaView , TextInput, KeyboardAvoidingView} from 'react-native';
 import { TapGestureHandler, GestureHandlerRootView } from 'react-native-gesture-handler';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
 const { width, height } = Dimensions.get('window');
 
-export default function ParamedicFormScreen() {
+export default function HospitalFormScreen() {
   return (
     <KeyboardAvoidingView style={{ flex: 1, backgroundColor: 'white', justifyContent: 'flex-start', }} enabled>
     <GestureHandlerRootView style={{ flex: 1, backgroundColor: 'white', justifyContent: 'flex-start'}}>
@@ -12,22 +13,19 @@ export default function ParamedicFormScreen() {
         <View style={styles.action}>
           <TextInput placeholder="Name" style={styles.textInput} placeholderTextColor="grey"/>
         </View>
-        <Text style={{...styles.text_footer, marginTop:15}}>Username</Text>
-        <View style={styles.action}>
-          <TextInput placeholder="Username" style={styles.textInput} placeholderTextColor="grey"/>
-        </View>
-        <Text style={{...styles.text_footer, marginTop:15}}>Email</Text>
-        <View style={styles.action}>
-          <TextInput placeholder="Email" style={styles.textInput} placeholderTextColor="grey"/>
-        </View>
-        <Text style={{...styles.text_footer, marginTop:15}}>Password</Text>
-        <View style={styles.action}>
-          <TextInput placeholder="Password" style={styles.textInput} placeholderTextColor="grey"/>
-        </View>
-        <Text style={{...styles.text_footer, marginTop:15}}>Token</Text>
-        <View style={styles.action}>
-          <TextInput placeholder="Token" style={styles.textInput} placeholderTextColor="grey"/>
-        </View>
+        <Text style={{...styles.text_footer, marginTop:25}}>Address</Text>
+          <GooglePlacesAutocomplete 
+            placeholder='Search'
+            onPress={(data, details = null) => {
+              // 'details' is provided when fetchDetails = true
+              console.log(data, details);
+            }}
+            query={{
+              key: 'YOUR API KEY',
+              language: 'ero',
+              components: 'country:romania',
+            }}
+          />
       </SafeAreaView>
       <TapGestureHandler>
         <View style={styles.submitButton} >
@@ -48,7 +46,7 @@ const styles = StyleSheet.create({
     top: height/25,
   },
   submitButton: {
-    marginTop:10,
+    marginTop:50,
     backgroundColor: '#1c92ab',
     height: 60,
     marginHorizontal:30,

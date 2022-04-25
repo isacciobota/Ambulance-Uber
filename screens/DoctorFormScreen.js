@@ -1,9 +1,12 @@
+import React, { useState } from "react";
 import {Text, View, StyleSheet, Dimensions, SafeAreaView , TextInput, KeyboardAvoidingView} from 'react-native';
+import { Picker } from "@react-native-picker/picker";
 import { TapGestureHandler, GestureHandlerRootView } from 'react-native-gesture-handler';
 
 const { width, height } = Dimensions.get('window');
 
-export default function ParamedicFormScreen() {
+export default function DoctorFormScreen() {
+  const [selectedValue, setSelectedValue] = useState("Judetean");
   return (
     <KeyboardAvoidingView style={{ flex: 1, backgroundColor: 'white', justifyContent: 'flex-start', }} enabled>
     <GestureHandlerRootView style={{ flex: 1, backgroundColor: 'white', justifyContent: 'flex-start'}}>
@@ -27,6 +30,16 @@ export default function ParamedicFormScreen() {
         <Text style={{...styles.text_footer, marginTop:15}}>Token</Text>
         <View style={styles.action}>
           <TextInput placeholder="Token" style={styles.textInput} placeholderTextColor="grey"/>
+        </View>
+        
+        <View style={{flexDirection: 'row',}}>
+          <Text style={{...styles.text_footer, marginTop:16}}>Hospital:</Text>
+          <Picker selectedValue={selectedValue} mode="dropdown" style={{height: 30, width: width/3, marginLeft: 10}} 
+            onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}>
+            <Picker.Item color='gray' label="Judetean" value="Judetean" />
+            <Picker.Item color='gray' label="Municipal" value="Municipal" />
+            <Picker.Item color='gray' label="Urgente" value="Urgente" />
+          </Picker>
         </View>
       </SafeAreaView>
       <TapGestureHandler>

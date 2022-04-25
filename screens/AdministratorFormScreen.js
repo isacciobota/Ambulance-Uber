@@ -3,7 +3,7 @@ import { TapGestureHandler, GestureHandlerRootView } from 'react-native-gesture-
 
 const { width, height } = Dimensions.get('window');
 
-export default function ParamedicFormScreen() {
+export default function AdministratorFormScreen() {
   return (
     <KeyboardAvoidingView style={{ flex: 1, backgroundColor: 'white', justifyContent: 'flex-start', }} enabled>
     <GestureHandlerRootView style={{ flex: 1, backgroundColor: 'white', justifyContent: 'flex-start'}}>
@@ -16,17 +16,9 @@ export default function ParamedicFormScreen() {
         <View style={styles.action}>
           <TextInput placeholder="Username" style={styles.textInput} placeholderTextColor="grey"/>
         </View>
-        <Text style={{...styles.text_footer, marginTop:15}}>Email</Text>
-        <View style={styles.action}>
-          <TextInput placeholder="Email" style={styles.textInput} placeholderTextColor="grey"/>
-        </View>
         <Text style={{...styles.text_footer, marginTop:15}}>Password</Text>
         <View style={styles.action}>
           <TextInput placeholder="Password" style={styles.textInput} placeholderTextColor="grey"/>
-        </View>
-        <Text style={{...styles.text_footer, marginTop:15}}>Token</Text>
-        <View style={styles.action}>
-          <TextInput placeholder="Token" style={styles.textInput} placeholderTextColor="grey"/>
         </View>
       </SafeAreaView>
       <TapGestureHandler>
