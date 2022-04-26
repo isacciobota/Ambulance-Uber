@@ -4,22 +4,30 @@ import FloatingButton from '../components/FloatingButton';
 //Icons
 import Entypo from "react-native-vector-icons/Entypo";
 import FontAwesome from "react-native-vector-icons/FontAwesome5";
+import { Switch } from 'react-native-gesture-handler';
 
 const { width, height } = Dimensions.get('window');
 
-export default function ViewAdministratorScreen() {
+export default function PatientPatientsScreen() {
 
-  const [Administrators, setAdministrators] = useState([
-    { name: 'Administrator1', key: '1' },
-    { name: 'Administrator2', key: '2' },
-    { name: 'Administrator3', key: '3' },
-    { name: 'Administrator4', key: '4' },
-    { name: 'Administrator5', key: '5' },
-    { name: 'Administrator6', key: '6' },
-    { name: 'Administrator7', key: '7' },
-    { name: 'Administrator8', key: '8' },
-    { name: 'Administrator9', key: '9' },
+  const [Patients, setPatients] = useState([
+    { name: 'Patient1', key: '1' },
+    { name: 'Patient2', key: '2' },
+    { name: 'Patient3', key: '3' },
+    { name: 'Patient4', key: '4' },
+    { name: 'Patient5', key: '5' },
+    { name: 'Patient6', key: '6' },
+    { name: 'Patient7', key: '7' },
+    { name: 'Patient8', key: '8' },
+    { name: 'Patient9', key: '9' },
   ]);
+
+  const [switchValue, setSwitchValue] = useState(false);
+
+  const toggleSwitch = (value) => {
+    setSwitchValue(value);
+  }
+
   return (
     <View style={styles.container}>
       
@@ -28,25 +36,28 @@ export default function ViewAdministratorScreen() {
         <Entypo style={{padding:8, marginHorizontal: 20, marginTop:3}} name="magnifying-glass" color='black' size={22}/>
       </View>
 
-      <View style={{height: height-239}}>
+      <View style={{height: height-230}}>
       <ScrollView style={{height: height/4}}>
-        { Administrators.map((item) => {
+        { Patients.map((item) => {
           return (
             <View key={item.key} style={styles.imageView}>
               <View style={{flexDirection: 'row',}}>
                 {/* Aici e Name practic */}
                 <Text style={styles.entityName}>{item.name}</Text> 
-                <FontAwesome style={styles.entityIcon} name="wrench" size={19} color='black'/> 
+                <FontAwesome style={styles.entityIcon} name="user" size={19} color='black'/> 
               </View>
               <View style={{backgroundColor: 'white', height:3, width:width, marginBottom: 5}}></View>
               <View style={{flexDirection: 'row',}}>
-                <Text style={styles.entityField}>• Token</Text> 
+                <Text style={styles.entityField}>• Sex</Text>
+                <Text style={styles.entityField2}>• Age</Text> 
+              </View>
+              <View style={{flexDirection: 'row',}}>
+                <Text style={styles.entityField}>• Description</Text>
               </View>
             </View>
           )
           })}      
       </ScrollView></View>
-      <FloatingButton style={{bottom:100}}/>
     </View>
   )
 }

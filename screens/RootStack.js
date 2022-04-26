@@ -1,9 +1,11 @@
-import  React from 'react';
+import React, { useState } from 'react'
 import { Dimensions } from 'react-native';
+import { Switch } from 'react-native-gesture-handler';
 //React Navigator
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import AntDesign from "react-native-vector-icons/AntDesign";
+//Icons
+import Ionicons from "react-native-vector-icons/Ionicons";
 //Screens 
 import SignInScreen from './SignInScreen';
 import AdministratorScreen from './AdministratorScreen';
@@ -11,6 +13,8 @@ import DoctorFormScreen from './DoctorFormScreen';
 import ParamedicFormScreen from './ParamedicFormScreen';
 import HospitalFormScreen from './HospitalFormScreen';
 import AdministratorFormScreen from './AdministratorFormScreen';
+import DoctorScreen from './DoctorScreen';
+import DoctorChatScreen from './DoctorChatScreen';
 
 const Stack = createStackNavigator();
 const { width, height } = Dimensions.get('window');
@@ -19,7 +23,7 @@ function ExitButton() {
   const navigation = useNavigation();
 
   return (
-    <AntDesign name="logout" size={20} color='white'
+    <Ionicons name="md-exit-outline" size={25} color='white'
               onPress={() => navigation.reset({index: 0, routes: [{name :'SignInScreen'}],})}
               title="Info"
     />
@@ -27,6 +31,13 @@ function ExitButton() {
 }
 
 const RootStack = () => {
+
+  const [switchValue, setSwitchValue] = useState(false);
+
+  const toggleSwitch = (value) => {
+    setSwitchValue(value);
+  }
+
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -42,7 +53,7 @@ const RootStack = () => {
           },
           headerTintColor: 'white',
           headerRight: () => (
-            <ExitButton />
+            <ExitButton/>
           ),
         }}
         initialRouteName="SignInScreen"
@@ -100,7 +111,24 @@ const RootStack = () => {
               fontSize: 17,
             },
             headerRight: null,
-          }} name="AdministratorFormScreen" component={AdministratorFormScreen} />      
+          }} name="AdministratorFormScreen" component={AdministratorFormScreen} />
+          <Stack.Screen options={{
+            title: 'Hello *insert account name*!',
+            headerLeft: () => (
+              <Switch onValueChange={toggleSwitch} value={switchValue}/>
+            ),
+            headerTitleStyle: {
+              color: 'white',
+              fontSize: 17,
+            },
+          }}
+          name="DoctorScreen" component={DoctorScreen} />
+          <Stack.Screen name="Chat" component = {DoctorChatScreen} 
+           options={({route}) => ({
+              title: route.params.userName,
+              headerBackTitleVisible: false,
+          })}
+          />      
       </Stack.Navigator>
     </NavigationContainer>
   )

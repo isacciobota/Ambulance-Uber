@@ -25,7 +25,6 @@ export default function ViewParamedicScreen() {
       
       <View style={styles.searchBar}>
         <TextInput placeholder="Search" style={styles.textInput} placeholderTextColor="grey"/>
-        <View style={{backgroundColor: 'white', height:44, width:3}}></View>
         <Entypo style={{padding:8, marginHorizontal: 20, marginTop:3}} name="magnifying-glass" color='black' size={22}/>
       </View>
 
