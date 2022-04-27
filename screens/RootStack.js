@@ -15,6 +15,8 @@ import HospitalFormScreen from './HospitalFormScreen';
 import AdministratorFormScreen from './AdministratorFormScreen';
 import DoctorScreen from './DoctorScreen';
 import DoctorChatScreen from './DoctorChatScreen';
+import ParamedicScreen from './ParamedicScreen';
+import ParamedicChatScreen from './ParamedicChatScreen';
 
 const Stack = createStackNavigator();
 const { width, height } = Dimensions.get('window');
@@ -123,7 +125,22 @@ const RootStack = () => {
             },
           }}
           name="DoctorScreen" component={DoctorScreen} />
-          <Stack.Screen name="Chat" component = {DoctorChatScreen} 
+          <Stack.Screen name="DoctorChat" component = {DoctorChatScreen} 
+           options={({route}) => ({
+              title: route.params.userName,
+              headerBackTitleVisible: false,
+          })}
+          />
+          <Stack.Screen options={{
+            title: 'Hello *insert account name*!',
+            headerLeft: null,
+            headerTitleStyle: {
+              color: 'white',
+              fontSize: 17,
+            },
+          }}
+          name="ParamedicScreen" component={ParamedicScreen} />
+          <Stack.Screen name="ParamedicChat" component = {ParamedicChatScreen} 
            options={({route}) => ({
               title: route.params.userName,
               headerBackTitleVisible: false,

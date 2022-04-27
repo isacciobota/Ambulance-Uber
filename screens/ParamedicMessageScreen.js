@@ -9,7 +9,7 @@ const { width, height } = Dimensions.get('window');
 const Messages = [
   {
     id: '1',
-    userName: 'Paramedic 1',
+    userName: 'Hospital 1',
     userImg: require('../assets/users/user-3.jpg'),
     messageTime: '4 mins ago',
     messageText:
@@ -17,7 +17,7 @@ const Messages = [
   },
   {
     id: '2',
-    userName: 'Paramedic 2',
+    userName: 'Hospital 2',
     userImg: require('../assets/users/user-1.jpg'),
     messageTime: '2 hours ago',
     messageText:
@@ -25,7 +25,7 @@ const Messages = [
   },
   {
     id: '3',
-    userName: 'Paramedic 3',
+    userName: 'Hospital 3',
     userImg: require('../assets/users/user-4.jpg'),
     messageTime: '1 hours ago',
     messageText:
@@ -33,7 +33,7 @@ const Messages = [
   },
   {
     id: '4',
-    userName: 'Paramedic 4',
+    userName: 'Hospital 4',
     userImg: require('../assets/users/user-6.jpg'),
     messageTime: '1 day ago',
     messageText:
@@ -41,7 +41,7 @@ const Messages = [
   },
   {
     id: '5',
-    userName: 'Paramedic 5',
+    userName: 'Hospital 5',
     userImg: require('../assets/users/user-7.jpg'),
     messageTime: '2 days ago',
     messageText:
@@ -49,7 +49,7 @@ const Messages = [
   },
   {
     id: '6',
-    userName: 'Paramedic 6',
+    userName: 'Hospital 6',
     userImg: require('../assets/users/user-7.jpg'),
     messageTime: '2 days ago',
     messageText:
@@ -57,7 +57,7 @@ const Messages = [
   },
   {
     id: '7',
-    userName: 'Paramedic 7',
+    userName: 'Hospital 7',
     userImg: require('../assets/users/user-7.jpg'),
     messageTime: '2 days ago',
     messageText:
@@ -65,7 +65,7 @@ const Messages = [
   },
   {
     id: '8',
-    userName: 'Paramedic 8',
+    userName: 'Hospital 8',
     userImg: require('../assets/users/user-7.jpg'),
     messageTime: '2 days ago',
     messageText:
@@ -73,7 +73,7 @@ const Messages = [
   },
 ];
 
-const DoctorMessagesScreen = ({navigation}) => {
+const ParamedicMessagesScreen = ({navigation}) => {
     return (
       <Container>
         <View style={styles.searchBar}>
@@ -86,7 +86,7 @@ const DoctorMessagesScreen = ({navigation}) => {
           data={Messages}
           keyExtractor={item=>item.id}
           renderItem={({item}) => (
-            <Card onPress={() => navigation.navigate('DoctorChat', {userName: item.userName})}>
+            <Card onPress={() => navigation.navigate('ParamedicChat', {userName: item.userName})}>
               <UserInfo>
                 <UserImgWrapper>
                   <UserImg source={item.userImg} />
@@ -107,7 +107,7 @@ const DoctorMessagesScreen = ({navigation}) => {
     );
 };
 
-export default DoctorMessagesScreen;
+export default ParamedicMessagesScreen;
 
 const styles = StyleSheet.create({
   container: {

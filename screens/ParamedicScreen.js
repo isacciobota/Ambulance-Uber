@@ -1,17 +1,15 @@
 import React from 'react'
 import { View, StyleSheet} from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
 //Screens
-import DoctorPatientsScreen from './DoctorPatientsScreen';
-import DoctorMessageScreen from './DoctorMessageScreen';
-import DoctorChatScreeen from './DoctorChatScreen';
+import PatientFormScreen from './PatientFormScreen';
+import ParamedicMessageScreen from './ParamedicMessageScreen';
 //Icons
 import FontAwesome from "react-native-vector-icons/FontAwesome5";
 
 const Tab = createBottomTabNavigator();
 
-export default function DoctorScreen() {
+export default function ParamedicScreen() {
 
   return ( 
       <Tab.Navigator
@@ -29,7 +27,7 @@ export default function DoctorScreen() {
         }}
       >
         
-        <Tab.Screen name="DoctorMessages" component={DoctorMessageScreen} 
+        <Tab.Screen name="ParamedicMessages" component={ParamedicMessageScreen} 
           options={{
             
             tabBarIcon: ({focused}) => {
@@ -43,15 +41,15 @@ export default function DoctorScreen() {
               },
           }}
         />
-        <Tab.Screen name="DoctorPatientsScreen" component={DoctorPatientsScreen} 
+        <Tab.Screen name="PatientFormScreen" component={PatientFormScreen} 
           options={{
             tabBarIcon: ({focused}) => {
               return focused ? (
               <View style={styles.tabBarIconFocused}>
-                <FontAwesome style={styles.entityIcon} name="user-alt" size={23} color='#1c92ab'/> 
+                <FontAwesome style={styles.entityIcon} name="user-plus" size={23} color='#1c92ab'/> 
               </View>) : (
               <View style={styles.tabBarIcon}>
-                <FontAwesome style={styles.entityIcon} name="user-alt" size={23} color='grey'/> 
+                <FontAwesome style={styles.entityIcon} name="user-plus" size={23} color='grey'/> 
               </View>)
               },
           }}

@@ -193,7 +193,7 @@ class SignInScreen extends Component {
 
   onPressButton() {
     const { navigate } = this.props.navigation;
-    navigate("DoctorScreen")
+    navigate("ParamedicScreen")
   }
 }
 export default SignInScreen;
