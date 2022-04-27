@@ -1,6 +1,5 @@
 import React from 'react'
 import { View, StyleSheet} from 'react-native';
-import FloatingButton from '../components/FloatingButton';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 //Screens
 import ViewDoctorsScreen from './ViewDoctorsScreen';
@@ -9,12 +8,10 @@ import ViewHospitalsScreen from './ViewHospitalsScreen';
 import ViewAdministratorsScreen from './ViewAdministratorsScreen';
 //Icons
 import FontAwesome from "react-native-vector-icons/FontAwesome5";
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 const Tab = createBottomTabNavigator();
  
 export default function AdministratorScreen() {
-
   return ( 
       <Tab.Navigator
         screenOptions= {{
@@ -27,7 +24,7 @@ export default function AdministratorScreen() {
             position:'absolute',
             elevation:0,
             height: 70,
-          }
+          },
         }}
       >
         <Tab.Screen name="Doctors" component={ViewDoctorsScreen} 
@@ -56,12 +53,10 @@ export default function AdministratorScreen() {
               },
           }}
         />
-        <Tab.Screen name="Plus" component={ViewDoctorsScreen}  
+        <Tab.Screen name="Plus" component={ViewParamedicsScreen}  
           options={{
-            overflow:'clickable',
-            tabBarIcon: ({focused}) => (
+            tabBarIcon: () => (
               <View style={styles.tabBarFloatingButton}>
-                 {/* <FloatingButton style={{bottom:65}}/> */}
               </View>
             )
           }}

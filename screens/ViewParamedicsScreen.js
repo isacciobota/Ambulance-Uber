@@ -3,7 +3,7 @@ import {Text, View, StyleSheet, Dimensions, ScrollView, TextInput} from 'react-n
 import FloatingButton from '../components/FloatingButton';
 //Icons
 import Entypo from "react-native-vector-icons/Entypo";
-import FontAwesome from "react-native-vector-icons/FontAwesome5";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 const { width, height } = Dimensions.get('window');
 
@@ -36,7 +36,7 @@ export default function ViewParamedicScreen() {
               <View style={{flexDirection: 'row',}}>
                 {/* Aici e Name practic */}
                 <Text style={styles.entityName}>{item.name}</Text> 
-                <FontAwesome style={styles.entityIcon} name="ambulance" size={19} color='black'/> 
+                <FontAwesome style={styles.entityIcon} name="trash-o" size={19} color='black'/> 
               </View>
               <View style={{backgroundColor: 'white', height:3, width:width, marginBottom: 5}}></View>
               <View style={{flexDirection: 'row',}}>

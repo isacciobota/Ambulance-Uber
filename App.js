@@ -29,17 +29,6 @@ function cacheImages(images) {
   });
 }
 
-const Stack = createStackNavigator();
-
-function MyStack() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen name="SignIn" component={SignInScreen} />
-      <Stack.Screen name="Administrator" component={AdministratorScreen} />
-    </Stack.Navigator>
-  );
-}
-
 export default class App extends Component {
   constructor() {
     super();

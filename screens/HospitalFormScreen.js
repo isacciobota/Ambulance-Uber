@@ -22,7 +22,7 @@ export default function HospitalFormScreen() {
             }}
             query={{
               key: 'YOUR API KEY',
-              language: 'ero',
+              language: 'ro',
               components: 'country:romania',
             }}
           />

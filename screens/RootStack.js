@@ -6,6 +6,7 @@ import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 //Icons
 import Ionicons from "react-native-vector-icons/Ionicons";
+import FontAwesome from "react-native-vector-icons/FontAwesome5";
 //Screens 
 import SignInScreen from './SignInScreen';
 import AdministratorScreen from './AdministratorScreen';
@@ -127,6 +128,9 @@ const RootStack = () => {
           name="DoctorScreen" component={DoctorScreen} />
           <Stack.Screen name="DoctorChat" component = {DoctorChatScreen} 
            options={({route}) => ({
+            headerRight: () => (
+              <FontAwesome name="map-marker-alt" size={21} color='white'/> 
+            ),
               title: route.params.userName,
               headerBackTitleVisible: false,
           })}

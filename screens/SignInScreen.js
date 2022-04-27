@@ -179,11 +179,13 @@ class SignInScreen extends Component {
                   </View>)
                 }
             </SafeAreaView>
+            {/* Aici se face verificarea de cont*/}
             <TapGestureHandler onHandlerStateChange={this.onPressButton.bind(this)}>
             <Animated.View style={styles.signInButton} >
               <Text style={{ fontSize: 18, fontWeight: 'bold', color:'white'}}>SIGN IN</Text>
             </Animated.View>
             </TapGestureHandler>
+
           </Animated.View>
         </View>
       </GestureHandlerRootView>
@@ -193,7 +195,7 @@ class SignInScreen extends Component {
 
   onPressButton() {
     const { navigate } = this.props.navigation;
-    navigate("ParamedicScreen")
+    navigate("AdministratorScreen")
   }
 }
 export default SignInScreen;
