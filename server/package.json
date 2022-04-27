@@ -1,0 +1,26 @@
+{
+  "name": "ambulance-uber",
+  "version": "1.0.0",
+  "description": "**Smart Ambulance** este o aplicatie distribuita, care faciliteaza comunicarea dintre paramedic si doctor. \r Prin intermediul aplicatiei, paramedicul ofera in timp real date despre starea pacientului si locatia in care se afla ambulanta.\r Doctor poate comunica cu acesta pentru a afla detalii suplimentare si se poate pregati din timp pentru preluarea pacientului.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isacciobota/Ambulance-Uber.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/isacciobota/Ambulance-Uber/issues"
+  },
+  "homepage": "https://github.com/isacciobota/Ambulance-Uber#readme",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "mongoose": "^6.3.0",
+    "nodemon": "^2.0.15"
+  }
+}
