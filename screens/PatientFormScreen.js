@@ -27,6 +27,15 @@ export default function PatientFormScreen() {
             <Picker.Item color='gray' label="Female" value="Female" />
           </Picker>
         </View>
+        <View style={{flexDirection: 'row',}}>
+          <Text style={{...styles.text_footer, marginTop:16}}>Hospital:</Text>
+          <Picker selectedValue={selectedValue} mode="dropdown" style={{height: 30, width: width/3, marginLeft: 10}} 
+            onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}>
+            <Picker.Item color='gray' label="Judetean" value="Judetean" />
+            <Picker.Item color='gray' label="Municipal" value="Municipal" />
+            <Picker.Item color='gray' label="Urgente" value="Urgente" />
+          </Picker>
+        </View>
         <Text style={{...styles.text_footer, marginTop:15}}>Description</Text>
         <View style={styles.action}>
           <TextInput placeholder="Description" style={styles.textInput} placeholderTextColor="grey"/>
