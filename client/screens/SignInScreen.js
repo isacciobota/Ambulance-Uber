@@ -200,7 +200,7 @@ class SignInScreen extends Component {
 
   onPressButton() {
     const { navigate } = this.props.navigation;
-    navigate("ParamedicScreen")
+    navigate("AdministratorScreen")
   }
 
   onPressButton2() {
@@ -243,7 +243,7 @@ const styles = StyleSheet.create({
   },
   forgotPassword: {
     marginHorizontal:35,
-    marginTop: 5,
+    marginTop: 8,
   },
   closeButton:{
     height:30,

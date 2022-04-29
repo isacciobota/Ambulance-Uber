@@ -9,20 +9,25 @@ import Feather from "react-native-vector-icons/Feather";
 
 const { width, height } = Dimensions.get('window');
 
-export default class ForgotPasswordScreen extends Component {
+export default class ChangePasswordScreen extends Component {
   render() {
     return (
       <KeyboardAvoidingView style={styles.container}>
         <SafeAreaView style={{marginHorizontal:30, paddingLeft:10}}>
-          <Text style={styles.text_footer}>Username</Text>
+          <Text style={styles.text_footer}>Current password</Text>
           <View style={styles.action}>
-            <FontAwesome name="user-o" color='#1c92ab' size={20}/>
-            <TextInput placeholder="Your username" style={styles.textInput} placeholderTextColor="grey"/>
+            <Feather name="lock" color='#1c92ab' size={20}/>
+            <TextInput placeholder="Your current password" style={styles.textInput} placeholderTextColor="grey"/>
           </View>
-          <Text style={{...styles.text_footer, marginTop:15}}>Email</Text>
+          <Text style={{...styles.text_footer, marginTop:15}}>New password</Text>
           <View style={styles.action}>
-            <Feather name="mail" color='#1c92ab' size={20}/>
-            <TextInput placeholder="Your email" secureTextEntry={true} style={styles.textInput} autoCapitalize="none" placeholderTextColor="grey"/>
+            <Feather name="lock" color='#1c92ab' size={20}/>
+            <TextInput placeholder="Your new password" secureTextEntry={true} style={styles.textInput} autoCapitalize="none" placeholderTextColor="grey"/>
+          </View>
+          <Text style={{...styles.text_footer, marginTop:15}}>Confirm new password</Text>
+          <View style={styles.action}>
+            <Feather name="lock" color='#1c92ab' size={20}/>
+            <TextInput placeholder="Confirm your new password" secureTextEntry={true} style={styles.textInput} autoCapitalize="none" placeholderTextColor="grey"/>
           </View>
         </SafeAreaView>
  
@@ -41,7 +46,7 @@ const styles = StyleSheet.create({
     top: 35,
   },
   submitButton: {
-    marginTop:10,
+    marginTop:15,
     backgroundColor: '#1c92ab',
     height: 60,
     marginHorizontal:30,
@@ -68,7 +73,7 @@ const styles = StyleSheet.create({
   },
   text_footer:{
     color: '#1c92ab',
-    fontSize: 16,
+    fontSize: 18,
     marginBottom: 5,
   },
   loginText:{
