@@ -28,8 +28,8 @@ export default function ViewDoctorScreen() {
         <Entypo style={{padding:8, marginHorizontal: 20, marginTop:3}} name="magnifying-glass" color='black' size={22}/>
       </View>
 
-      <View style={{height: height-239}}>
-      <ScrollView style={{height: height/4}}>
+      <View style={{height: height-210}}>
+      <ScrollView>
         { Doctors.map((item) => {
           return (
             <View key={item.key} style={styles.imageView}>
@@ -65,8 +65,8 @@ const styles = StyleSheet.create({
   },
   imageView: {
     backgroundColor: '#f2f2f2',
-    borderRadius: 15,
-    height: height/5,
+    borderRadius: 10,
+    paddingBottom: 15,
     width: width/1.1,
     marginBottom: 20,
   },
@@ -74,8 +74,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     width: width/1.1,
     flexDirection: 'row',
-    marginTop: 40,
-    marginBottom: 30,
+    marginTop: 20,
+    marginBottom: 20,
     backgroundColor: '#f2f2f2',
   },
   textInput:{

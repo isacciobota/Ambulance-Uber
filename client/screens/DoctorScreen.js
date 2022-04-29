@@ -1,11 +1,9 @@
 import React from 'react'
 import { View, StyleSheet} from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
 //Screens
 import DoctorPatientsScreen from './DoctorPatientsScreen';
 import DoctorMessageScreen from './DoctorMessageScreen';
-import DoctorChatScreeen from './DoctorChatScreen';
 //Icons
 import FontAwesome from "react-native-vector-icons/FontAwesome5";
 

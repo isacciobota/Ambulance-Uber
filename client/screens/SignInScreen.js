@@ -175,11 +175,16 @@ class SignInScreen extends Component {
                 </View>
                 { this.showTheThing &&
                   (<View style={{alignItems: 'center', justifyContent: 'center'}}>
-                    <Text style={{color:'red', fontSize:15, marginTop: 10}}>Wrong username or password</Text> 
+                    <Text style={{color:'red', fontSize:15, marginTop: 5}}>Wrong username or password</Text> 
                   </View>)
                 }
             </SafeAreaView>
             {/* Aici se face verificarea de cont*/}
+            <TapGestureHandler onHandlerStateChange={this.onPressButton2.bind(this)}>
+            <Animated.View style={styles.forgotPassword}>
+              <Text style={{ fontSize: 15, color:'gray'}}>Forgot your password?</Text>
+            </Animated.View>
+            </TapGestureHandler>
             <TapGestureHandler onHandlerStateChange={this.onPressButton.bind(this)}>
             <Animated.View style={styles.signInButton} >
               <Text style={{ fontSize: 18, fontWeight: 'bold', color:'white'}}>SIGN IN</Text>
@@ -195,7 +200,12 @@ class SignInScreen extends Component {
 
   onPressButton() {
     const { navigate } = this.props.navigation;
-    navigate("AdministratorScreen")
+    navigate("ParamedicScreen")
+  }
+
+  onPressButton2() {
+    const { navigate } = this.props.navigation;
+    navigate("ForgotPasswordScreen")
   }
 }
 export default SignInScreen;
@@ -230,6 +240,10 @@ const styles = StyleSheet.create({
     borderRadius:10,
     borderWidth:2,
     borderColor:'white'
+  },
+  forgotPassword: {
+    marginHorizontal:35,
+    marginTop: 5,
   },
   closeButton:{
     height:30,

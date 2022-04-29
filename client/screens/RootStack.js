@@ -18,6 +18,7 @@ import DoctorScreen from './DoctorScreen';
 import DoctorChatScreen from './DoctorChatScreen';
 import ParamedicScreen from './ParamedicScreen';
 import ParamedicChatScreen from './ParamedicChatScreen';
+import ForgotPasswordScreen from './ForgotPasswordScreen';
 
 const Stack = createStackNavigator();
 const { width, height } = Dimensions.get('window');
@@ -62,6 +63,15 @@ const RootStack = () => {
         initialRouteName="SignInScreen"
       >
         <Stack.Screen options={{headerShown: false}} name="SignInScreen" component={SignInScreen} />
+        <Stack.Screen options={{
+            title: 'Recover your password',
+            headerRight: null,
+            headerTitleStyle: {
+              color: 'white',
+              fontSize: 17,
+            },
+          }}
+          name="ForgotPasswordScreen" component={ForgotPasswordScreen} />
         <Stack.Screen options={{
             title: 'Hello *insert account name*!',
             headerLeft: null,
