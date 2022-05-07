@@ -4,24 +4,28 @@ const Schema = mongoose.Schema;
 const ParamedicSchema = new Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        min: 4
     },
     username: {
         type: String,
-        required: true
+        required: true,
+        min: 6,
+        max: 24
     },
     password: {
         type: String,
-        required: true
+        required: true,
+        min: 6
     },
-    Token: {
+    email: {
         type: String,
         required: true
     },
-    email:{
+    token: {
         type: String,
-        required: true
+        required: false
     }
-})
+});
 
 module.exports = mongoose.model('Paramedic', ParamedicSchema);

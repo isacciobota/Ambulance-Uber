@@ -1,16 +1,16 @@
-const Doctor = require('../models/Doctor');
-const doctorValidation = require('../validations/doctorValidation');
+const Paramedic = require('../models/Paramedic');
+const paramedicValidation = require('../validations/paramedicValidation');
 const searchUsername = require('../data_access/searchUsername');
 const searchEmail = require('../data_access/searchEmail');
 const bcrypt = require('bcryptjs');
 
-const addDoctorService = async (data) => {
+const addParamedicService = async (data) => {
     // Validation
-    const {error} = doctorValidation.addDoctorValidation(data);
+    const {error} = paramedicValidation.addParamedicValidation(data);
     if (error)
         return new Error(error.details[0].message);
 
-    const {name, username, password, email, hospital, token} = data;
+    const {name, username, password, email, token} = data;
     
     // Check if username/email already in the database
     const usernameExist = await searchUsername.searchUsername(username);
@@ -25,16 +25,15 @@ const addDoctorService = async (data) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
     
-    const doctor = new Doctor({
+    const paramedic = new Paramedic({
         name,
         username,
         password: hashedPassword,
         email,
-        hospital,
         token
     });
 
-    return doctor;
+    return paramedic;
 };
 
-module.exports.addDoctorService = addDoctorService;
+module.exports.addParamedicService = addParamedicService;

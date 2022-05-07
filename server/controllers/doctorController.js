@@ -1,5 +1,5 @@
 const Doctor = require('../models/Doctor');
-const addDoctorService = require('../services/doctorService');
+const addDoctorService = require('../services/addDoctorService');
 
 const getDoctors = async (req, res) => {
     const doctors = await Doctor.find()
@@ -19,10 +19,10 @@ const getDoctor = async (req, res) => {
 };
 
 const postDoctor = async (req, res) => {
-    const doctor = await addDoctorService(req.body);
+    const doctor = await addDoctorService.addDoctorService(req.body);
 
     if (doctor instanceof Error)
-        return res.status(409).send(error.message);
+        return res.status(409).send(doctor.message);
 
     try {
         const savedDoctor = await doctor.save();
