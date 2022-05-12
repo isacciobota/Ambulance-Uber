@@ -1,4 +1,5 @@
 const Doctor = require('../models/Doctor');
+const addDoctorService = require('../services/addDoctorService');
 
 const getDoctors = async (req, res) => {
     const doctors = await Doctor.find()
@@ -6,8 +7,8 @@ const getDoctors = async (req, res) => {
     res.status(200).json(doctors);
 };
 
-const getDoctor = async(req, res) => {
-    try{
+const getDoctor = async (req, res) => {
+    try {
         const doctor = await Doctor.findById(req.params.id);
         if (!doctor)
             throw new Error;
@@ -18,19 +19,16 @@ const getDoctor = async(req, res) => {
 };
 
 const postDoctor = async (req, res) => {
-    const {name, username, password} = req.body;
+    const doctor = await addDoctorService.addDoctorService(req.body);
 
-    const doctor = new Doctor({
-        name,
-        username,
-        password
-    });
+    if (doctor instanceof Error)
+        return res.status(409).send(doctor.message);
 
     try {
         const savedDoctor = await doctor.save();
         res.status(200).json(savedDoctor);
-    } catch(error) {
-        res.status(409).json(error.message);
+    } catch (error) {
+        res.status(409).json({ message: error });
     }
 };
 

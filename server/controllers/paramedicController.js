@@ -1,4 +1,5 @@
 const Paramedic = require('../models/Paramedic');
+const addParamedicService = require('../services/addParamedicService');
 
 const getParamedics= async (req, res) => {
     const paramedics = await Paramedic.find()
@@ -18,15 +19,10 @@ const getParamedic = async(req, res) => {
 };
 
 const postParamedic = async (req, res) => {
-    const {name, username, password, Token, email} = req.body;
+    const paramedic = await addParamedicService.addParamedicService(req.body);
 
-    const paramedic = new Paramedic({
-        name,
-        username,
-        password,
-        Token,
-        email
-    });
+    if (paramedic instanceof Error)
+        return res.status(409).send(paramedic.message);
 
     try {
         const savedParamedic = await paramedic.save();

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const DoctorSchema = new Schema({
+const AdminSchema = new Schema({
     name: {
         type: String,
         required: true,
@@ -21,19 +21,7 @@ const DoctorSchema = new Schema({
     email: {
         type: String,
         required: true
-    },
-    hospital: {
-        type: String,
-        required: true
-    },
-    active: {
-        type: Boolean,
-        default: false
-    },
-    token: {
-        type: String,
-        required: false
     }
 });
 
-module.exports = mongoose.model('Doctors', DoctorSchema);
+module.exports = mongoose.model('Admins', AdminSchema);
