@@ -1,17 +1,24 @@
-import {Text, View, StyleSheet, Dimensions, SafeAreaView , TextInput, KeyboardAvoidingView} from 'react-native';
+import {Text, View, StyleSheet, Dimensions, SafeAreaView , TextInput, KeyboardAvoidingView, Button } from 'react-native';
 import { TapGestureHandler, GestureHandlerRootView } from 'react-native-gesture-handler';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
-
+import React, { useState , useRef } from "react";
 const { width, height } = Dimensions.get('window');
+import {submitFunc} from '../services/buttons'
 
 export default function HospitalFormScreen() {
+
+  const [Hospital, setHospital] = useState({
+                                           });
+  const refName = useRef(null);
+  const refAddress = useRef(null);
+  let mounted=true;
   return (
     <KeyboardAvoidingView style={{ flex: 1, backgroundColor: 'white', justifyContent: 'flex-start', }} enabled>
     <GestureHandlerRootView style={{ flex: 1, backgroundColor: 'white', justifyContent: 'flex-start'}}>
       <SafeAreaView style={{marginHorizontal:40, marginVertical: 30}}>
         <Text style={styles.text_footer}>Name</Text>
         <View style={styles.action}>
-          <TextInput placeholder="Name" style={styles.textInput} placeholderTextColor="grey"/>
+          <TextInput placeholder="Name" style={styles.textInput} placeholderTextColor="grey" ref={refName} onChangeText={(name)=> {if(mounted) setHospital({name: name, address: Hospital.address})}} value={Hospital.name}/>
         </View>
         <Text style={{...styles.text_footer, marginTop:25}}>Address</Text>
           <GooglePlacesAutocomplete 
@@ -25,13 +32,14 @@ export default function HospitalFormScreen() {
               language: 'ro',
               components: 'country:romania',
             }}
+            ref={refName} onChangeText={(address)=> {if(mounted) setHospital({name: Hospital.name, address: address})}} value={Hospital.address}
           />
       </SafeAreaView>
-      <TapGestureHandler>
+      <Button title="submit" onPress={() => submitFunc(Doctor,'hospitals')}>
         <View style={styles.submitButton} >
           <Text style={{ fontSize: 18, fontWeight: 'bold', color:'white'}}>Submit</Text>
         </View>
-      </TapGestureHandler>
+      </Button>
     </GestureHandlerRootView>
     </KeyboardAvoidingView>  
   )

@@ -8,6 +8,20 @@ import { TapGestureHandler, State, GestureHandlerRootView } from 'react-native-g
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Feather from "react-native-vector-icons/Feather";
 
+//Variabile Globale
+window.doctors=[];
+window.administrators=[];
+window.paramedics=[];
+window.hospitals=[];
+window.patients=[];
+window.userLogat="";
+window.logged={
+        _id: "",
+        name: "",
+        username: "",
+};
+window.URL='http://192.168.0.139:3001/';
+
 const { width, height } = Dimensions.get('window');
 
 const {
@@ -60,6 +74,12 @@ function runTiming(clock, value, dest) {
 class SignInScreen extends Component {
   constructor() {
     super();
+    this.state={
+            username:"",
+            password:"",
+            data:"",
+            error:""
+        }
 
     this.buttonOpacity = new Value(1);
     this.pointerEvents = new Value('none');
@@ -135,6 +155,8 @@ class SignInScreen extends Component {
       extrapolate: Extrapolate.CLAMP
     });
   }
+
+
   render() {
     return (
       <KeyboardAvoidingView style={{ flex: 1, backgroundColor: 'white', justifyContent: 'flex-end', }} enabled>
@@ -166,12 +188,12 @@ class SignInScreen extends Component {
                 <Text style={styles.text_footer}>Username</Text>
                 <View style={styles.action}>
                   <FontAwesome name="user-o" color='#1c92ab' size={20}/>
-                  <TextInput placeholder="Your username" style={styles.textInput} placeholderTextColor="grey"/>
+                  <TextInput placeholder="Your username" style={styles.textInput} placeholderTextColor="grey" ref="username" onChangeText={(username)=> this.setState({username: username})} value={this.state.username}/>
                 </View>
                 <Text style={{...styles.text_footer, marginTop:15}}>Password</Text>
                 <View style={styles.action}>
                   <Feather name="lock" color='#1c92ab' size={20}/>
-                  <TextInput placeholder="Your password" secureTextEntry={true} style={styles.textInput} autoCapitalize="none" placeholderTextColor="grey"/>
+                  <TextInput placeholder="Your password" secureTextEntry={true} style={styles.textInput} autoCapitalize="none" placeholderTextColor="grey" ref="password" onChangeText={(password)=> this.setState({password: password})} value={this.state.password}/>
                 </View>
                 { this.showTheThing &&
                   (<View style={{alignItems: 'center', justifyContent: 'center'}}>
@@ -180,6 +202,7 @@ class SignInScreen extends Component {
                 }
             </SafeAreaView>
             {/* Aici se face verificarea de cont*/}
+              <Text style={{ fontSize: 15, color:'gray'}}>{this.state.error}</Text>
             <TapGestureHandler onHandlerStateChange={this.onPressButton2.bind(this)}>
             <Animated.View style={styles.forgotPassword}>
               <Text style={{ fontSize: 15, color:'gray'}}>Forgot your password?</Text>
@@ -198,9 +221,58 @@ class SignInScreen extends Component {
     );
   }
 
-  onPressButton() {
+    async login (){
+            var jsonData = {
+                               "username": this.state.username,
+                               "password": this.state.password
+                           }
+
+            const requestOptions = {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(jsonData)
+                };
+
+        /*await fetch(window.URL+'doctors').then(r => r.json()).then(j => window.doctors=j);
+        await fetch(window.URL+'paramedics').then(r => r.json()).then(j => window.paramedics=j);
+        await fetch(window.URL+'hospitals').then(r => r.json()).then(j => window.hospitals=j);
+        await fetch(window.URL+'paramedics').then(r => r.json()).then(j => window.administrators=j);
+        await fetch(window.URL+'patients').then(r => r.json()).then(j => window.patients=j);
+        console.log("GLOBaL VAR");*/
+        //console.log(window.doctors);
+        console.log("ceva");
+                const x= await fetch(window.URL+'users/login', requestOptions)
+                    .then(response => response.text())
+                    .then(data => this.setState({data: data}));
+                    return this.state.data[0];
+
+        }
+  async onPressButton() {
     const { navigate } = this.props.navigation;
-    navigate("AdministratorScreen")
+        await this.login();
+        userLogat=this.state.username;
+        if(this.state.data[0]=='d')
+        {
+        navigate("AdministratorScreen")
+        }else
+        if(this.state.data[0]=='p')
+        {
+        navigate("ParamedicScreen")
+        }else
+        if(this.state.data[0]=='a'||true)
+        {
+        navigate("DoctorScreen")
+        }
+        else
+        {   //Daca nu e nicio varianta e eroare
+        try{
+          this.setState({error: this.state.data});
+        }
+        catch(error)
+        {
+
+        }
+        }
   }
 
   onPressButton2() {

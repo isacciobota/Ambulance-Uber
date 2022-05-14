@@ -6,20 +6,13 @@ import Entypo from "react-native-vector-icons/Entypo";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 const { width, height } = Dimensions.get('window');
+import { getDoctors } from '../services/loadDoctors';
+
 
 export default function ViewDoctorScreen() {
-
-  const [Doctors, setDoctors] = useState([
-    { name: 'Doctor1', key: '1' },
-    { name: 'Doctor2', key: '2' },
-    { name: 'Doctor3', key: '3' },
-    { name: 'Doctor4', key: '4' },
-    { name: 'Doctor5', key: '5' },
-    { name: 'Doctor6', key: '6' },
-    { name: 'Doctor7', key: '7' },
-    { name: 'Doctor8', key: '8' },
-    { name: 'Doctor9', key: '9' },
-  ]);
+  const [Doctors, setDoctors] = useState(window.doctors);
+  let mounted=true;
+  getDoctors().then(d=>{ if(mounted) setDoctors(d)})
   return (
     <View style={styles.container}>
       
@@ -30,22 +23,24 @@ export default function ViewDoctorScreen() {
 
       <View style={{height: height-210}}>
       <ScrollView>
-        { Doctors.map((item) => {
+        {
+        Doctors.map((item) => {
+        item.key=item.username;
           return (
-            <View key={item.key} style={styles.imageView}>
-              <View style={{flexDirection: 'row',}}>
+            <View  style={styles.imageView}>
+              <View style={{flexDirection: 'row',}} key={item.key}>
                 {/* Aici e Name practic */}
                 <Text style={styles.entityName}>{item.name}</Text> 
                 <FontAwesome style={styles.entityIcon} name="trash-o" size={19} color='black'/> 
               </View>
               <View style={{backgroundColor: 'white', height:3, width:width, marginBottom: 5}}></View>
               <View style={{flexDirection: 'row',}}>
-                <Text style={styles.entityField}>• Username</Text>
-                <Text style={styles.entityField2}>• Token</Text> 
+                <Text style={styles.entityField}>• {item.username}</Text>
+                <Text style={styles.entityField2}>• {item.token}</Text>
               </View>
               <View style={{flexDirection: 'row',}}>
-                <Text style={styles.entityField}>• Spital</Text>
-                <Text style={styles.entityField2}>• Email</Text> 
+                <Text style={styles.entityField}>• {item.hospital}</Text>
+                <Text style={styles.entityField2}>• {item.email}</Text>
               </View>
             </View>
           )

@@ -1,31 +1,39 @@
-import {Text, View, StyleSheet, Dimensions, SafeAreaView , TextInput, KeyboardAvoidingView} from 'react-native';
+import {Text, View, StyleSheet, Dimensions, SafeAreaView , TextInput, KeyboardAvoidingView , Button} from 'react-native';
 import { TapGestureHandler, GestureHandlerRootView } from 'react-native-gesture-handler';
+import React, { useState , useRef  } from "react";
+import {submitFunc} from '../services/buttons'
 
 const { width, height } = Dimensions.get('window');
 
 export default function AdministratorFormScreen() {
+
+  const [Administrator, setAdministrator] = useState({
+                                           });
+  const refName = useRef(null);
+  const refUsername = useRef(null);
+  const refPassword = useRef(null);
   return (
     <KeyboardAvoidingView style={{ flex: 1, backgroundColor: 'white', justifyContent: 'flex-start', }} enabled>
     <GestureHandlerRootView style={{ flex: 1, backgroundColor: 'white', justifyContent: 'flex-start'}}>
       <SafeAreaView style={{marginHorizontal:40, marginVertical: 30}}>
         <Text style={styles.text_footer}>Name</Text>
         <View style={styles.action}>
-          <TextInput placeholder="Name" style={styles.textInput} placeholderTextColor="grey"/>
+          <TextInput placeholder="Name" style={styles.textInput} placeholderTextColor="grey" ref={refName} onChangeText={(name)=> {if(mounted) setAdministrator({name: name, username: Administrator.username, password: Administrator.password})}} value={Administrator.name}/>
         </View>
         <Text style={{...styles.text_footer, marginTop:15}}>Username</Text>
         <View style={styles.action}>
-          <TextInput placeholder="Username" style={styles.textInput} placeholderTextColor="grey"/>
+          <TextInput placeholder="Username" style={styles.textInput} placeholderTextColor="grey" ref={refUsername} onChangeText={(username)=> {if(mounted) setAdministrator({name: Administrator.name, username: username, password: Administrator.password})}} value={Administrator.username}/>
         </View>
         <Text style={{...styles.text_footer, marginTop:15}}>Password</Text>
         <View style={styles.action}>
-          <TextInput placeholder="Password" style={styles.textInput} placeholderTextColor="grey"/>
+          <TextInput placeholder="Password" style={styles.textInput} placeholderTextColor="grey" ref={refPassword} onChangeText={(password)=> {if(mounted) setAdministrator({name: Administrator.name, username: Administrator.username, password: password})}} value={Administrator.password}/>
         </View>
       </SafeAreaView>
-      <TapGestureHandler>
+      <Button title="submit" onPress={() => submitFunc(Administrator,'administrators')}>
         <View style={styles.submitButton} >
           <Text style={{ fontSize: 18, fontWeight: 'bold', color:'white'}}>Submit</Text>
         </View>
-      </TapGestureHandler>
+      </Button>
     </GestureHandlerRootView>
     </KeyboardAvoidingView>  
   )

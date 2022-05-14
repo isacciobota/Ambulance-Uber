@@ -4,22 +4,15 @@ import FloatingButton from '../components/FloatingButton';
 //Icons
 import Entypo from "react-native-vector-icons/Entypo";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
+import { getAdmins } from '../services/loadAdmins';
 
 const { width, height } = Dimensions.get('window');
 
 export default function ViewAdministratorScreen() {
 
-  const [Administrators, setAdministrators] = useState([
-    { name: 'Administrator1', key: '1' },
-    { name: 'Administrator2', key: '2' },
-    { name: 'Administrator3', key: '3' },
-    { name: 'Administrator4', key: '4' },
-    { name: 'Administrator5', key: '5' },
-    { name: 'Administrator6', key: '6' },
-    { name: 'Administrator7', key: '7' },
-    { name: 'Administrator8', key: '8' },
-    { name: 'Administrator9', key: '9' },
-  ]);
+  const [Administrators ,setAdministrators] = useState(window.administrators);
+  let mounted=true;
+  getAdmins().then(d=>{ if(mounted) setAdministrators(d)})
   return (
     <View style={styles.container}>
       
@@ -31,8 +24,9 @@ export default function ViewAdministratorScreen() {
       <View style={{height: height-210}}>
       <ScrollView>
         { Administrators.map((item) => {
+        item.key=item.username;
           return (
-            <View key={item.key} style={styles.imageView}>
+            <View style={styles.imageView} key={item.key}>
               <View style={{flexDirection: 'row',}}>
                 {/* Aici e Name practic */}
                 <Text style={styles.entityName}>{item.name}</Text> 
@@ -40,7 +34,7 @@ export default function ViewAdministratorScreen() {
               </View>
               <View style={{backgroundColor: 'white', height:3, width:width, marginBottom: 5}}></View>
               <View style={{flexDirection: 'row',}}>
-                <Text style={styles.entityField}>• Token</Text> 
+                <Text style={styles.entityField}>• {item.token}</Text>
               </View>
             </View>
           )

@@ -76,7 +76,7 @@ const RootStack = () => {
           }}
           name="ForgotPasswordScreen" component={ForgotPasswordScreen} />  
         <Stack.Screen options={{
-            title: 'Hello *insert account name*!',
+            title: 'Hello '+window.userLogat+"!",
             headerLeft: null,
             headerTitleStyle: {
               color: 'white',
@@ -85,7 +85,7 @@ const RootStack = () => {
           }}
           name="AdministratorScreen" component={AdministratorScreen} />
         <Stack.Screen options={{
-            title: 'Hello *insert account name*!',
+            title: 'Hello '+window.userLogat+"!",
             headerLeft: () => (
               <Switch onValueChange={toggleSwitch} value={switchValue}/>
             ),
@@ -96,7 +96,7 @@ const RootStack = () => {
           }}
           name="DoctorScreen" component={DoctorScreen} />
         <Stack.Screen options={{
-            title: 'Hello *insert account name*!',
+            title: 'Hello '+window.userLogat+"!",
             headerLeft: null,
             headerTitleStyle: {
               color: 'white',

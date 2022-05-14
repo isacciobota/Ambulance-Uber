@@ -1,28 +1,49 @@
-import React, { useState } from "react";
-import {Text, View, StyleSheet, Dimensions, SafeAreaView , TextInput, KeyboardAvoidingView} from 'react-native';
+import React, { useState , useRef} from "react";
+import {Text, View, StyleSheet, Dimensions, Button, SafeAreaView , TextInput, KeyboardAvoidingView} from 'react-native';
 import { TapGestureHandler, GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Picker } from "@react-native-picker/picker";
+import {getHospitals} from '../services/loadHospitals'
+import {submitFunc} from '../services/buttons'
 
 const { width, height } = Dimensions.get('window');
 
 export default function PatientFormScreen() {
   const [selectedValue, setSelectedValue] = useState("Judetean");
+    const [Patient, setPatient] = useState({
+                                             });
+    const [Hospitals, setHospitals] = useState([
+                                                   {
+                                                       "_id": "627fc8cbf3ac113494d75b75",
+                                                       "name": "name",
+                                                       "address": "a",
+                                                       "doctorsToken": [],
+                                                       "__v": 0
+                                                   }
+                                               ]);
+    const refName = useRef(null);
+    const refAge = useRef(null);
+    const refSex = useRef(null);
+    const refDescription = useRef(null);
+    const refHospital = useRef(null);
+    let mounted=true;
+
+    getHospitals().then(d=>{ if(mounted) setHospitals(d)})
   return (
     <KeyboardAvoidingView style={{ flex: 1, backgroundColor: 'white', justifyContent: 'flex-start', }} enabled>
     <GestureHandlerRootView style={{ flex: 1, backgroundColor: 'white', justifyContent: 'flex-start'}}>
       <SafeAreaView style={{marginHorizontal:40, marginVertical: 30}}>
         <Text style={styles.text_footer}>Name</Text>
         <View style={styles.action}>
-          <TextInput placeholder="Name" style={styles.textInput} placeholderTextColor="grey"/>
+          <TextInput placeholder="Name" style={styles.textInput} placeholderTextColor="grey" ref={refName} onChangeText={(name)=> {if(mounted) setPatient({name: name, age: Patient.age, sex: Patient.sex, description:Patient.description, hospital: Patient.hospital})}} value={Patient.name}/>
         </View>
         <Text style={{...styles.text_footer, marginTop:15}}>Age</Text>
         <View style={styles.action}>
-          <TextInput placeholder="Age" style={styles.textInput} placeholderTextColor="grey"/>
+          <TextInput placeholder="Age" style={styles.textInput} placeholderTextColor="grey" ref={refAge} onChangeText={(age)=> {if(mounted) setPatient({name: Patient.name, age: age, sex: Patient.sex, description:Patient.description, hospital: Patient.hospital})}} value={Patient.age}/>
         </View>
         <View style={{flexDirection: 'row',}}>
           <Text style={{...styles.text_footer, marginTop:16}}>Sex:</Text>
           <Picker selectedValue={selectedValue} mode="dropdown" style={{height: 30, width: width/3, marginLeft: 10}} 
-            onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}>
+            onValueChange={(itemValue, itemIndex) => {if(mounted) {setSelectedValue(itemValue); setPatient({name: Patient.name, age: Patient.age, sex: itemValue, description:Patient.description, hospital: Patient.hospital})}}}>
             <Picker.Item color='gray' label="Male" value="Male" />
             <Picker.Item color='gray' label="Female" value="Female" />
           </Picker>
@@ -30,22 +51,25 @@ export default function PatientFormScreen() {
         <View style={{flexDirection: 'row',}}>
           <Text style={{...styles.text_footer, marginTop:16}}>Hospital:</Text>
           <Picker selectedValue={selectedValue} mode="dropdown" style={{height: 30, width: width/3, marginLeft: 10}} 
-            onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}>
-            <Picker.Item color='gray' label="Judetean" value="Judetean" />
-            <Picker.Item color='gray' label="Municipal" value="Municipal" />
-            <Picker.Item color='gray' label="Urgente" value="Urgente" />
+            onValueChange={(itemValue, itemIndex) => {if(mounted) {setSelectedValue(itemValue); setPatient({name: Patient.name, age: Patient.age, sex: Patient.sex, description:Patient.description, hospital: itemValue})}}}>
+            {Hospitals.map((item) => {
+                            item.key=item.name;
+                            return (
+                            <Picker.Item color='gray' label={item.name} value={item.name} key={item.key}/>
+                            )
+                        })}
           </Picker>
         </View>
         <Text style={{...styles.text_footer, marginTop:15}}>Description</Text>
         <View style={styles.action}>
-          <TextInput placeholder="Description" style={styles.textInput} placeholderTextColor="grey"/>
+          <TextInput placeholder="Description" style={styles.textInput} placeholderTextColor="grey" ref={refDescription} onChangeText={(description)=> {if(mounted) setPatient({name: Patient.name, age: Patient.age, sex: Patient.sex, description:description, hospital: Patient.hospital})}} value={Patient.description}/>
         </View>
       </SafeAreaView>
-      <TapGestureHandler>
+      <Button title="submit" onPress={() => submitFunc(Patient,'patients')}>
         <View style={styles.submitButton} >
           <Text style={{ fontSize: 18, fontWeight: 'bold', color:'white'}}>Submit</Text>
         </View>
-      </TapGestureHandler>
+      </Button>
     </GestureHandlerRootView>
     </KeyboardAvoidingView>  
   )

@@ -5,22 +5,15 @@ import FloatingButton from '../components/FloatingButton';
 import Entypo from "react-native-vector-icons/Entypo";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { Switch } from 'react-native-gesture-handler';
+import { getPatients } from '../services/loadPatients';
 
 const { width, height } = Dimensions.get('window');
 
 export default function PatientPatientsScreen() {
 
-  const [Patients, setPatients] = useState([
-    { name: 'Patient1', key: '1' },
-    { name: 'Patient2', key: '2' },
-    { name: 'Patient3', key: '3' },
-    { name: 'Patient4', key: '4' },
-    { name: 'Patient5', key: '5' },
-    { name: 'Patient6', key: '6' },
-    { name: 'Patient7', key: '7' },
-    { name: 'Patient8', key: '8' },
-    { name: 'Patient9', key: '9' },
-  ]);
+  const [Patients, setPatients]= useState([]);
+  let mounted=true;
+  getPatients().then(d=>{ if(mounted) setPatients(d)})
 
   const [switchValue, setSwitchValue] = useState(false);
 
@@ -39,9 +32,10 @@ export default function PatientPatientsScreen() {
       <View style={{height: height-200}}>
       <ScrollView>
         { Patients.map((item) => {
+        item.key=item.username;
           return (
-            <View key={item.key} style={styles.imageView}>
-              <View style={{flexDirection: 'row',}}>
+            <View  style={styles.imageView}>
+              <View style={{flexDirection: 'row',}} key={item.key}>
                 {/* Aici e Name practic */}
                 <Text style={styles.entityName}>{item.name}</Text> 
                 {/* Cand dai pe iconita, da delete la pacient */}
@@ -49,11 +43,11 @@ export default function PatientPatientsScreen() {
               </View>
               <View style={{backgroundColor: 'white', height:3, width:width, marginBottom: 5}}></View>
               <View style={{flexDirection: 'row',}}>
-                <Text style={styles.entityField}>• Sex</Text>
-                <Text style={styles.entityField2}>• Age</Text> 
+                <Text style={styles.entityField}>• {item.sex}</Text>
+                <Text style={styles.entityField2}>• {item.age}</Text>
               </View>
               <View style={{flexDirection: 'row',}}>
-                <Text style={styles.entityField}>• Description</Text>
+                <Text style={styles.entityField}>• {item.description}</Text>
               </View>
             </View>
           )

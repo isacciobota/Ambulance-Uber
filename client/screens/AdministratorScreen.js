@@ -10,7 +10,7 @@ import ViewAdministratorsScreen from './ViewAdministratorsScreen';
 import FontAwesome from "react-native-vector-icons/FontAwesome5";
 
 const Tab = createBottomTabNavigator();
- 
+
 export default function AdministratorScreen() {
   return ( 
       <Tab.Navigator

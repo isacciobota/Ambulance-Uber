@@ -4,22 +4,16 @@ import FloatingButton from '../components/FloatingButton';
 //Icons
 import Entypo from "react-native-vector-icons/Entypo";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
+import { getHospitals } from '../services/loadHospitals';
 
 const { width, height } = Dimensions.get('window');
 
 export default function ViewHospitalScreen() {
 
-  const [Hospitals, setHospitals] = useState([
-    { name: 'Hospital1', key: '1' },
-    { name: 'Hospital2', key: '2' },
-    { name: 'Hospital3', key: '3' },
-    { name: 'Hospital4', key: '4' },
-    { name: 'Hospital5', key: '5' },
-    { name: 'Hospital6', key: '6' },
-    { name: 'Hospital7', key: '7' },
-    { name: 'Hospital8', key: '8' },
-    { name: 'Hospital9', key: '9' },
-  ]);
+  const [Hospitals ,setHospitals] = useState(window.hospitals);
+  let mounted=true;
+  getHospitals().then(d=>{ if(mounted) setHospitals(d)});
+
   return (
     <View style={styles.container}>
       
@@ -31,17 +25,18 @@ export default function ViewHospitalScreen() {
       <View style={{height: height-210}}>
       <ScrollView>
         { Hospitals.map((item) => {
+        item.key=item.username;
           return (
-            <View key={item.key} style={styles.imageView}>
-              <View style={{flexDirection: 'row',}}>
+            <View style={styles.imageView}>
+              <View style={{flexDirection: 'row',}} key={item.key}>
                 {/* Aici e Name practic */}
                 <Text style={styles.entityName}>{item.name}</Text> 
                 <FontAwesome style={styles.entityIcon} name="trash-o" size={19} color='black'/> 
               </View>
               <View style={{backgroundColor: 'white', height:3, width:width, marginBottom: 5}}></View>
               <View style={{flexDirection: 'row',}}>
-                <Text style={styles.entityField}>• Username</Text>
-                <Text style={styles.entityField2}>• Token</Text> 
+                <Text style={styles.entityField}>• {item.username}</Text>
+                <Text style={styles.entityField2}>• {item.token}</Text>
               </View>
               <View style={{flexDirection: 'row',}}>
                 <Text style={styles.entityField}>• Spital</Text>
