@@ -1,5 +1,6 @@
 const Doctor = require('../models/Doctor');
 const addDoctorService = require('../services/addDoctorService');
+const bcrypt = require('bcryptjs');
 
 const getDoctors = async (req, res) => {
     const doctors = await Doctor.find()
@@ -34,7 +35,11 @@ const postDoctor = async (req, res) => {
 
 const putDoctor = async (req, res) => {
     try {
-        const updatedDoctor = await Doctor.updateOne({ _id: req.params.id }, { $set: { name: req.body.name }});
+    // Hash password
+    const password=req.body.password;
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+        const updatedDoctor = await Doctor.updateOne({ _id: req.params.id }, { $set: { password: hashedPassword }});
         res.status(200).json(updatedDoctor);
     } catch (error) {
         res.status(404).json({ message: error });

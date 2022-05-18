@@ -21,9 +21,9 @@ import ForgotPasswordScreen from './ForgotPasswordScreen';
 import SettingsScreen from './SettingsScreen';
 import ChangePasswordScreen from './ChangePasswordScreen';
 import ChangeEmailScreen from './ChangeEmailScreen';
-
 const Stack = createStackNavigator();
 const { width, height } = Dimensions.get('window');
+import {userLogat} from './SignInScreen';
 
 function SettingsButton() {
   const navigation = useNavigation();

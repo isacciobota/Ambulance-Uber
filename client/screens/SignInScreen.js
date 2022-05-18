@@ -7,6 +7,7 @@ import { TapGestureHandler, State, GestureHandlerRootView } from 'react-native-g
 //Icons
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Feather from "react-native-vector-icons/Feather";
+import jwt_decode from "jwt-decode";
 
 //Variabile Globale
 window.doctors=[];
@@ -14,13 +15,10 @@ window.administrators=[];
 window.paramedics=[];
 window.hospitals=[];
 window.patients=[];
-window.userLogat="";
-window.logged={
-        _id: "",
-        name: "",
-        username: "",
-};
-window.URL='http://192.168.0.139:3001/';
+window.userLogat='';
+window.idLogat='';
+window.role='';
+window.URL='http://192.168.191.1:3001/';
 
 const { width, height } = Dimensions.get('window');
 
@@ -240,28 +238,37 @@ class SignInScreen extends Component {
         await fetch(window.URL+'patients').then(r => r.json()).then(j => window.patients=j);
         console.log("GLOBaL VAR");*/
         //console.log(window.doctors);
+        this.setState({ok:false});
         console.log("ceva");
                 const x= await fetch(window.URL+'users/login', requestOptions)
-                    .then(response => response.text())
+                    .then(response => {if(response.ok) { this.setState({ok:true})} return response.text(); })
                     .then(data => this.setState({data: data}));
-                    return this.state.data[0];
+            window.userLogat=this.state.username;
 
         }
   async onPressButton() {
     const { navigate } = this.props.navigation;
         await this.login();
-        userLogat=this.state.username;
-        if(this.state.data[0]=='d')
+        if(this.state.ok)
         {
+            const j=jwt_decode(this.state.data);
+            const role=j.role;
+            window.idLogat=j._id;
+        if(role=="Admin")
+        {
+        window.role='admins';
         navigate("AdministratorScreen")
         }else
-        if(this.state.data[0]=='p')
+        if(role=="Paramedic")
         {
+        window.role='paramedics'
         navigate("ParamedicScreen")
         }else
-        if(this.state.data[0]=='a'||true)
+        if(role=="Doctor")
         {
+        window.role='doctors';
         navigate("DoctorScreen")
+        }
         }
         else
         {   //Daca nu e nicio varianta e eroare
