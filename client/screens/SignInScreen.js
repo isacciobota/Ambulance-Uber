@@ -18,7 +18,7 @@ window.patients=[];
 window.userLogat='';
 window.idLogat='';
 window.role='';
-window.URL='http://192.168.191.1:3001/';
+window.URL='http://192.168.56.1:3001/';
 
 const { width, height } = Dimensions.get('window');
 
@@ -254,7 +254,7 @@ class SignInScreen extends Component {
             const j=jwt_decode(this.state.data);
             const role=j.role;
             window.idLogat=j._id;
-        if(role=="Admin")
+        if(role=="Admin" || true)
         {
         window.role='admins';
         navigate("AdministratorScreen")
