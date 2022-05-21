@@ -83,10 +83,10 @@ export default class ChangePasswordScreen extends Component {
                                             body: JSON.stringify(jsonData)
                                         };
                                         console.log(jsonData);
-                        fetch(window.URL+destination,requestOptions).then(res => res.text()).then(res=>console.log(res))
+                        fetch(window.URL+destination+"/"+window.idLogat,requestOptions).then(res => res.text()).then(res=>console.log(res))
 
                         const { navigate } = this.props.navigation;
-        navigate("SettingsScreen")
+                        navigate("SettingsScreen")
 
             }
             else

@@ -13,12 +13,14 @@ const hospitalRoutes = require('./routes/hospitalRoutes');
 const paramedicRoutes = require('./routes/paramedicRoutes');
 const patientRoutes = require('./routes/patientRoutes');
 const userRoutes = require('./routes/userRoutes');
+const emailRoutes = require('./routes/emailRoutes');
 
 app.use('/doctors', doctorRoutes);
 app.use('/hospitals', hospitalRoutes);
 app.use('/paramedics', paramedicRoutes);
 app.use('/patients', patientRoutes);
 app.use('/users', userRoutes);
+app.use('/email', emailRoutes);
 
 // Connect to db
 mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true })

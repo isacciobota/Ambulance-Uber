@@ -18,7 +18,7 @@ window.patients=[];
 window.userLogat='';
 window.idLogat='';
 window.role='';
-window.URL='http://192.168.56.1:3001/';
+window.URL='http://192.168.191.1:3001/';
 
 const { width, height } = Dimensions.get('window');
 
@@ -195,12 +195,11 @@ class SignInScreen extends Component {
                 </View>
                 { this.showTheThing &&
                   (<View style={{alignItems: 'center', justifyContent: 'center'}}>
-                    <Text style={{color:'red', fontSize:15, marginTop: 5}}>Wrong username or password</Text> 
+                    <Text style={{color:'red', fontSize:15, marginTop: 5}}>{this.state.error}</Text>
                   </View>)
                 }
             </SafeAreaView>
             {/* Aici se face verificarea de cont*/}
-              <Text style={{ fontSize: 15, color:'gray'}}>{this.state.error}</Text>
             <TapGestureHandler onHandlerStateChange={this.onPressButton2.bind(this)}>
             <Animated.View style={styles.forgotPassword}>
               <Text style={{ fontSize: 15, color:'gray'}}>Forgot your password?</Text>
@@ -240,21 +239,25 @@ class SignInScreen extends Component {
         //console.log(window.doctors);
         this.setState({ok:false});
         console.log("ceva");
-                const x= await fetch(window.URL+'users/login', requestOptions)
+        try
+                {const x= await fetch(window.URL+'users/login', requestOptions)
                     .then(response => {if(response.ok) { this.setState({ok:true})} return response.text(); })
-                    .then(data => this.setState({data: data}));
+                    .then(data => this.setState({data: data}));}
+                    catch(error){}
             window.userLogat=this.state.username;
 
         }
   async onPressButton() {
+          this.showTheThing=false;
     const { navigate } = this.props.navigation;
         await this.login();
         if(this.state.ok)
         {
             const j=jwt_decode(this.state.data);
             const role=j.role;
+            console.log(role);
             window.idLogat=j._id;
-        if(role=="Admin" || true)
+        if(role=="Admin")
         {
         window.role='admins';
         navigate("AdministratorScreen")
@@ -274,6 +277,7 @@ class SignInScreen extends Component {
         {   //Daca nu e nicio varianta e eroare
         try{
           this.setState({error: this.state.data});
+          this.showTheThing=true;
         }
         catch(error)
         {
