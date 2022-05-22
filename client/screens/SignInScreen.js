@@ -18,7 +18,7 @@ window.patients=[];
 window.userLogat='';
 window.idLogat='';
 window.role='';
-window.URL='http://192.168.191.1:3001/';
+window.URL='http://192.168.1.164:3001/';
 
 const { width, height } = Dimensions.get('window');
 

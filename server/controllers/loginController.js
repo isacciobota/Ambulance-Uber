@@ -14,14 +14,17 @@ const loginUser = async (req, res) => {
     const {username, password} = req.body;
 
     var user = await Doctor.findOne({username: username});
-    if (!user){
+    
+    if (!user) {
         console.log(username);
         user = await Paramedic.findOne({username: username});
         console.log(user);
-        }
-   if(!user)
+    }
+
+    if(!user)
         user = await Admin.findOne({username: username});
-        if(!user)
+    
+    if(!user)
         return res.status(400).send('Username or password is wrong.');
 
     const validPassword = await bcrypt.compare(password, user.password);
