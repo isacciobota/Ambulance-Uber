@@ -6,6 +6,7 @@ import { NavigationContainer, useNavigation, View } from '@react-navigation/nati
 import { createStackNavigator } from '@react-navigation/stack';
 //Icons
 import FontAwesome from "react-native-vector-icons/FontAwesome";
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 //Screens 
 import SignInScreen from './SignInScreen';
 import AdministratorScreen from './AdministratorScreen';
@@ -178,7 +179,7 @@ const RootStack = () => {
           <Stack.Screen name="DoctorChat" component = {DoctorChatScreen} 
            options={({route}) => ({
             headerRight: () => (
-              <FontAwesome name="map-marker-alt" size={21} color='white'/> 
+              <FontAwesome5 name="map-marker-alt" size={21} color='white'/> 
             ),
               title: route.params.userName,
               headerBackTitleVisible: false,
@@ -186,6 +187,7 @@ const RootStack = () => {
           />
           <Stack.Screen name="ParamedicChat" component = {ParamedicChatScreen} 
            options={({route}) => ({
+              headerRight: null,
               title: route.params.userName,
               headerBackTitleVisible: false,
           })}
