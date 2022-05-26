@@ -1,21 +1,19 @@
-const Admin = require('../models/Admin');
-const adminValidation = require('../validations/adminValidation');
+const Patient = require('../models/Patient');
+const PatientValidation = require('../validations/PatientValidation');
 const searchUsername = require('../data_access/searchUsername');
 const searchEmail = require('../data_access/searchEmail');
 const bcrypt = require('bcryptjs');
 
-const addAdminService = async (data) => {
+const addPatientService = async (data) => {
     // Validation
-
-    const {error} = adminValidation.addAdminValidation(data);
-
+    const {error} = doctorValidation.addPatientValidation(data);
     if (error)
         return new Error(error.details[0].message);
 
-    const {name, username, password, email} = data;
+    const {name, sex, age, description, pictures} = data;
 
     // Check if username/email already in the database
-    const usernameExist = await searchUsername.searchUsername(username);
+    /*const usernameExist = await searchUsername.searchUsername(username);
     if (usernameExist)
         return new Error('Username already exists');
 
@@ -26,15 +24,16 @@ const addAdminService = async (data) => {
     // Hash password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
-
-    const admin = new Admin({
+ */
+    const patient = new Patient({
         name,
-        username,
-        password: hashedPassword,
-        email
+        sex,
+        age,
+        description,
+        pictures
     });
 
-    return admin;
+    return patient;
 };
 
-module.exports.addAdminService = addAdminService;
+module.exports.addDoctorService = addDoctorService;
