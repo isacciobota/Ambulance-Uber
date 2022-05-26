@@ -6,6 +6,7 @@ import Entypo from "react-native-vector-icons/Entypo";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { Switch } from 'react-native-gesture-handler';
 import { getPatients } from '../services/loadPatients';
+import { TapGestureHandler, State, GestureHandlerRootView } from 'react-native-gesture-handler';
 
 const { width, height } = Dimensions.get('window');
 
@@ -39,7 +40,9 @@ export default function PatientPatientsScreen() {
                 {/* Aici e Name practic */}
                 <Text style={styles.entityName}>{item.name}</Text> 
                 {/* Cand dai pe iconita, da delete la pacient */}
-                <FontAwesome style={styles.entityIcon} name="trash-o" size={19} color='black'/> 
+            <TapGestureHandler onHandlerStateChange={  () => fetch(window.URL+'patients/'+item._id, { method: 'DELETE' }) } key={item.key}>
+                <FontAwesome style={styles.entityIcon} name="trash-o" size={19} color='black'/>
+                </TapGestureHandler>
               </View>
               <View style={{backgroundColor: 'white', height:3, width:width, marginBottom: 5}}></View>
               <View style={{flexDirection: 'row',}}>

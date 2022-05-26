@@ -6,7 +6,9 @@ const bcrypt = require('bcryptjs');
 
 const addAdminService = async (data) => {
     // Validation
-    const {error} = doctorValidation.addAdminValidation(data);
+
+    const {error} = adminValidation.addAdminValidation(data);
+
     if (error)
         return new Error(error.details[0].message);
 

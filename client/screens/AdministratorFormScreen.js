@@ -29,11 +29,11 @@ export default function AdministratorFormScreen() {
           <TextInput placeholder="Password" style={styles.textInput} placeholderTextColor="grey" ref={refPassword} onChangeText={(password)=> {if(mounted) setAdministrator({name: Administrator.name, username: Administrator.username, password: password})}} value={Administrator.password}/>
         </View>
       </SafeAreaView>
-      <Button title="submit" onPress={() => submitFunc(Administrator,'administrators')}>
-        <View style={styles.submitButton} >
-          <Text style={{ fontSize: 18, fontWeight: 'bold', color:'white'}}>Submit</Text>
-        </View>
-      </Button>
+      <View style={styles.signInButton}>
+        <Text style={{ fontSize: 18, color:'white'}} onPress={() => submitFunc(Patient,'patients')}> 
+          Submit
+        </Text>
+      </View>
     </GestureHandlerRootView>
     </KeyboardAvoidingView>  
   )
@@ -46,6 +46,20 @@ const styles = StyleSheet.create({
     height: height/5,
     width: width/1.1,
     top: height/25,
+  },
+  signInButton: {
+    marginTop:10,
+    backgroundColor: '#1c92ab',
+    height: 60,
+    marginHorizontal:30,
+    borderRadius: 10,
+    alignItems: 'center', 
+    justifyContent: 'center',
+    marginVertical: 5,
+    shadowOffset:{ width:2, height:2},
+    shadowColor: 'black',
+    shadowOpacity: 0.2,
+    elevation: 5,
   },
   submitButton: {
     marginTop:10,

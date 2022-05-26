@@ -65,11 +65,12 @@ export default function PatientFormScreen() {
           <TextInput placeholder="Description" style={styles.textInput} placeholderTextColor="grey" ref={refDescription} onChangeText={(description)=> {if(mounted) setPatient({name: Patient.name, age: Patient.age, sex: Patient.sex, description:description, hospital: Patient.hospital})}} value={Patient.description}/>
         </View>
       </SafeAreaView>
-      <Button title="submit" onPress={() => submitFunc(Patient,'patients')}>
-        <View style={styles.submitButton} >
-          <Text style={{ fontSize: 18, fontWeight: 'bold', color:'white'}}>Submit</Text>
-        </View>
-      </Button>
+      <View style={styles.signInButton}>
+        <Text style={{ fontSize: 18, color:'white'}} onPress={() => submitFunc(Patient,'patients')}> 
+          Submit
+        </Text>
+      </View>
+
     </GestureHandlerRootView>
     </KeyboardAvoidingView>  
   )
@@ -84,6 +85,20 @@ const styles = StyleSheet.create({
     top: height/25,
   },
   submitButton: {
+    marginTop:10,
+    backgroundColor: '#1c92ab',
+    height: 60,
+    marginHorizontal:30,
+    borderRadius: 10,
+    alignItems: 'center', 
+    justifyContent: 'center',
+    marginVertical: 5,
+    shadowOffset:{ width:2, height:2},
+    shadowColor: 'black',
+    shadowOpacity: 0.2,
+    elevation: 5,
+  },
+  signInButton: {
     marginTop:10,
     backgroundColor: '#1c92ab',
     height: 60,

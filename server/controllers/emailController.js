@@ -5,32 +5,27 @@ const Admin = require('../models/Admin');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-const loginUser = async (req, res) => {
-    // Validation
-    const {error} = loginValidation.loginValidation(req.body);
-    if (error)
-        return res.status(409).send(error.details[0].message);
+const checkEmail = async (req, res) => {
     
-    const {username, password} = req.body;
+    const {username, email} = req.body;
+    console.log(username);
 
     var user = await Doctor.findOne({username: username});
-    
-    if (!user) {
+    console.log(user);
+    if (!user){
         console.log(username);
         user = await Paramedic.findOne({username: username});
         console.log(user);
-    }
-
-    if(!user)
+        }
+   if(!user)
         user = await Admin.findOne({username: username});
-    
-    if(!user)
-        return res.status(400).send('Username or password is wrong.');
+        if(!user)
+        return res.status(400).send('Username does not exist');
 
-    const validPassword = await bcrypt.compare(password, user.password);
+    const validPassword = email == user.email;
     
     if (!validPassword)
-        return res.status(400).send('password is wrong.');
+        return res.status(400).send('email does not match username');
     
     if (user instanceof Doctor)
         role = 'Doctor';
@@ -49,4 +44,4 @@ const loginUser = async (req, res) => {
     }
 };
 
-module.exports = loginUser;
+module.exports = checkEmail;

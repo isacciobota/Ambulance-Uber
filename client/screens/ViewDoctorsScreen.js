@@ -7,6 +7,7 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 const { width, height } = Dimensions.get('window');
 import { getDoctors } from '../services/loadDoctors';
+import { TapGestureHandler, State, GestureHandlerRootView } from 'react-native-gesture-handler';
 
 
 export default function ViewDoctorScreen() {
@@ -30,8 +31,10 @@ export default function ViewDoctorScreen() {
             <View  style={styles.imageView}>
               <View style={{flexDirection: 'row',}} key={item.key}>
                 {/* Aici e Name practic */}
-                <Text style={styles.entityName}>{item.name}</Text> 
-                <FontAwesome style={styles.entityIcon} name="trash-o" size={19} color='black'/> 
+                <Text style={styles.entityName}>{item.name}</Text>
+            <TapGestureHandler onHandlerStateChange={  () => fetch(window.URL+'doctors/'+item._id, { method: 'DELETE' }) }>
+                <FontAwesome style={styles.entityIcon} name="trash-o" size={19} color='black'/>
+                </TapGestureHandler>
               </View>
               <View style={{backgroundColor: 'white', height:3, width:width, marginBottom: 5}}></View>
               <View style={{flexDirection: 'row',}}>

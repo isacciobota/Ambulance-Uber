@@ -1,5 +1,8 @@
-const Admin = require('../models/Doctor');
+
+const Admin = require('../models/Admin');
 const addAdminService = require('../services/addAdminService');
+const bcrypt = require('bcryptjs');
+
 
 const getAdmins = async (req, res) => {
     const admins = await Admin.find()
@@ -34,7 +37,14 @@ const postAdmin = async (req, res) => {
 
 const putAdmin = async (req, res) => {
     try {
-        const updatedAdmin = await Admin.updateOne({ _id: req.params.id }, { $set: { name: req.body.name }});
+
+        // Hash password
+        const password = req.body.password;
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
+
+        const updatedAdmin = await Admin.updateOne({ _id: req.params.id }, { $set: { password: hashedPassword }});
+
         res.status(200).json(updatedAdmin);
     } catch (error) {
         res.status(404).json({ message: error });

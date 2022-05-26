@@ -1,7 +1,7 @@
 // Validation
 const Joi = require('@hapi/joi');
 
-// Add doctor validation
+// Add admin validation
 const addAdminValidation = (data) => {
     const adminSchema = Joi.object({
         name: Joi.string().min(4).required(),

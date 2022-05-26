@@ -34,7 +34,11 @@ const postParamedic = async (req, res) => {
 
 const putParamedic = async (req, res) => {
     try {
-        const updatedParamedic= await Paramedic.updateOne({ _id: req.params.id }, { $set: { name: req.body.name }});
+    // Hash password
+    const password=req.body.password;
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+        const updatedParamedic= await Paramedic.updateOne({ _id: req.params.id }, { $set: { password: hashedPassword }});
         res.status(200).json(updatedParamedic);
     } catch (error) {
         res.status(404).json({ message: error });
