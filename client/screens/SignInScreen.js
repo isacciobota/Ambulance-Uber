@@ -18,7 +18,7 @@ window.patients=[];
 window.userLogat='';
 window.idLogat='';
 window.role='';
-window.URL='http://192.168.56.1:3001/';
+window.URL='http://18.212.247.203:3001/';
 window.token = '';
 
 const { width, height } = Dimensions.get('window');

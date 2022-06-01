@@ -62,7 +62,8 @@ export default class ChangePasswordScreen extends Component {
 
               const requestOptions = {
                       method: 'POST',
-                      headers: { 'Content-Type': 'application/json' },
+                      headers: { 'Content-Type': 'application/json',
+                       'auth-token': [window.token]},
                       body: JSON.stringify(jsonData)
                   };
                   this.setState({ok:false});
@@ -79,7 +80,8 @@ export default class ChangePasswordScreen extends Component {
                            }
                  const requestOptions = {
                                             method: 'PUT',
-                                            headers: { 'Content-Type': 'application/json' },
+                                            headers: { 'Content-Type': 'application/json',
+                                             'auth-token': [window.token]},
                                             body: JSON.stringify(jsonData)
                                         };
                                         console.log(jsonData);
