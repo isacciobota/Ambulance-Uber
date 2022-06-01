@@ -1,14 +1,14 @@
 // Validation
 const Joi = require('@hapi/joi');
 
-// Add paramedic validation
+// Add patient validation
 const addPatientValidation = (data) => {
     const patientSchema = Joi.object({
         name: Joi.string().min(4).required(),
-        sex: Joi.string().min(1).max(1).required(),
+        sex: Joi.string().min(1).max(7).required(),
         age: Joi.string().required(),
         description: Joi.string().required(),
-        pictures: Joi.string().required()
+        pictures: Joi.string()
     });
 
     return patientSchema.validate(data);

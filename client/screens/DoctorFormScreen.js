@@ -69,7 +69,7 @@ export default function DoctorFormScreen() {
         </View>
       </SafeAreaView>
       <View style={styles.signInButton}>
-        <Text style={{ fontSize: 18, color:'white'}} onPress={() => submitFunc(Patient,'patients')}> 
+        <Text style={{ fontSize: 18, color:'white'}} onPress={() => submitFunc(Doctor,'doctors')}> 
           Submit
         </Text>
       </View>

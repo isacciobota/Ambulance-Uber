@@ -6,7 +6,7 @@ import {submitFunc} from '../services/buttons'
 const { width, height } = Dimensions.get('window');
 
 export default function AdministratorFormScreen() {
-
+  let mounted = true;
   const [Administrator, setAdministrator] = useState({
                                            });
   const refName = useRef(null);
@@ -30,7 +30,7 @@ export default function AdministratorFormScreen() {
         </View>
       </SafeAreaView>
       <View style={styles.signInButton}>
-        <Text style={{ fontSize: 18, color:'white'}} onPress={() => submitFunc(Patient,'patients')}> 
+        <Text style={{ fontSize: 18, color:'white'}} onPress={() => submitFunc(Administrator,'admins')}> 
           Submit
         </Text>
       </View>

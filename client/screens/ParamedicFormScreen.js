@@ -38,7 +38,7 @@ export default function ParamedicFormScreen() {
         </View>
       </SafeAreaView>
       <View style={styles.signInButton}>
-        <Text style={{ fontSize: 18, color:'white'}} onPress={() => submitFunc(Patient,'patients')}> 
+        <Text style={{ fontSize: 18, color:'white'}} onPress={() => submitFunc(Paramedic,'paramedics')}> 
           Submit
         </Text>
       </View>
