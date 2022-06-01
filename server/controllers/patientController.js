@@ -1,4 +1,5 @@
 const Patient = require('../models/Patient');
+const addPatientService = require('../services/addPatientService');
 
 const getPatients = async (req, res) => {
     const patients = await Patient.find()
@@ -18,15 +19,10 @@ const getPatient = async(req, res) => {
 };
 
 const postPatient = async (req, res) => {
-    const {name, sex,age, description, pictures} = req.body;
+    const patient = await addPatientService.addPatientService(req.body);
 
-    const patient = new Patient({
-        name,
-        sex,
-        age,
-        description,
-        pictures
-    });
+    if (patient instanceof Error)
+        return res.status(409).send(patient.message);
 
     try {
         const savedPatient= await patient.save();

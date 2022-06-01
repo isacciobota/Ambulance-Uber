@@ -7,7 +7,7 @@ const addAdminValidation = (data) => {
         name: Joi.string().min(4).required(),
         username: Joi.string().min(6).max(24).required(),
         password: Joi.string().min(6).required(),
-        email: Joi.string().required().email()
+        email: Joi.string().email()
     });
 
     return adminSchema.validate(data);

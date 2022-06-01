@@ -18,7 +18,8 @@ window.patients=[];
 window.userLogat='';
 window.idLogat='';
 window.role='';
-window.URL='http://192.168.1.164:3001/';
+window.URL='http://192.168.56.1:3001/';
+window.token = '';
 
 const { width, height } = Dimensions.get('window');
 
@@ -230,13 +231,6 @@ class SignInScreen extends Component {
                     body: JSON.stringify(jsonData)
                 };
 
-        /*await fetch(window.URL+'doctors').then(r => r.json()).then(j => window.doctors=j);
-        await fetch(window.URL+'paramedics').then(r => r.json()).then(j => window.paramedics=j);
-        await fetch(window.URL+'hospitals').then(r => r.json()).then(j => window.hospitals=j);
-        await fetch(window.URL+'paramedics').then(r => r.json()).then(j => window.administrators=j);
-        await fetch(window.URL+'patients').then(r => r.json()).then(j => window.patients=j);
-        console.log("GLOBaL VAR");*/
-        //console.log(window.doctors);
         this.setState({ok:false});
         console.log("ceva");
         try
@@ -244,7 +238,6 @@ class SignInScreen extends Component {
                     .then(response => {if(response.ok) { this.setState({ok:true})} return response.text(); })
                     .then(data => this.setState({data: data}));}
                     catch(error){}
-            window.userLogat=this.state.username;
 
         }
   async onPressButton() {
@@ -257,21 +250,23 @@ class SignInScreen extends Component {
             const role=j.role;
             console.log(role);
             window.idLogat=j._id;
-        if(role=="Admin")
-        {
-        window.role='admins';
-        navigate("AdministratorScreen")
-        }else
-        if(role=="Paramedic")
-        {
-        window.role='paramedics'
-        navigate("ParamedicScreen")
-        }else
-        if(role=="Doctor")
-        {
-        window.role='doctors';
-        navigate("DoctorScreen")
-        }
+            window.token = this.state.data;
+            window.userLogat = this.state.username;
+          if(role=="Admin")
+          {
+            window.role='admins';
+            navigate("AdministratorScreen")
+          }else
+            if(role=="Paramedic")
+            {
+              window.role='paramedics'
+              navigate("ParamedicScreen")
+            }else
+              if(role=="Doctor")
+              {
+              window.role='doctors';
+              navigate("DoctorScreen")
+              }
         }
         else
         {   //Daca nu e nicio varianta e eroare

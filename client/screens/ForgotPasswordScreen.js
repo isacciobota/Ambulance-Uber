@@ -9,7 +9,7 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Feather from "react-native-vector-icons/Feather";
 import jwt_decode from "jwt-decode";
 const { width, height } = Dimensions.get('window');
-window.URL='http://192.168.191.1:3001/';
+window.URL='http://192.168.56.1:3001/';
 
 export default class ForgotPasswordScreen extends Component {
     constructor(){
@@ -100,7 +100,8 @@ pressButton(){
                                   }
                         requestOptions = {
                                                    method: 'PUT',
-                                                   headers: { 'Content-Type': 'application/json' },
+                                                   headers: { 'Content-Type': 'application/json',
+                                                              'auth-token': [this.state.data] },
                                                    body: JSON.stringify(jsonData)
                                                };
                                                console.log(jsonData);

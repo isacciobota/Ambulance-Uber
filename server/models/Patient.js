@@ -19,8 +19,7 @@ const PatientSchema = new Schema({
         required: true
     },
     pictures: {
-        type: [String],
-        required: true
+        type: [String]
     }
 });
 

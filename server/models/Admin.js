@@ -19,8 +19,7 @@ const AdminSchema = new Schema({
         min: 6
     },
     email: {
-        type: String,
-        required: true
+        type: String
     }
 });
 

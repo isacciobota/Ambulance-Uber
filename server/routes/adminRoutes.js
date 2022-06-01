@@ -1,15 +1,16 @@
 const express = require('express');
 const { getAdmins, getAdmin, postAdmin, putAdmin, deleteAdmin } = require('../controllers/adminController');
 const router = express.Router();
+const verify = require('./verifyToken');
 
-router.get('/', getAdmins);
+router.get('/', verify, getAdmins);
 
-router.get('/:id', getAdmin);
+router.get('/:id', verify, getAdmin);
 
-router.post('/', postAdmin);
+router.post('/', verify, postAdmin);
 
-router.put('/:id', putAdmin);
+router.put('/:id', verify, putAdmin);
 
-router.delete('/:id', deleteAdmin);
+router.delete('/:id', verify, deleteAdmin);
 
 module.exports = router;

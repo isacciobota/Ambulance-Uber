@@ -1,15 +1,16 @@
 const express = require('express');
 const { getHospitals, getHospital, postHospital, putHospital, deleteHospital } = require('../controllers/hospitalController');
 const router = express.Router();
+const verify = require('./verifyToken');
 
-router.get('/', getHospitals);
+router.get('/', verify, getHospitals);
 
-router.get('/:id', getHospital);
+router.get('/:id', verify, getHospital);
 
-router.post('/', postHospital);
+router.post('/', verify, postHospital);
 
-router.put('/:id', putHospital);
+router.put('/:id', verify, putHospital);
 
-router.delete('/:id', deleteHospital);
+router.delete('/:id', verify, deleteHospital);
 
 module.exports = router;

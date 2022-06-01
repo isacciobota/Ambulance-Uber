@@ -21,22 +21,13 @@ export default function HospitalFormScreen() {
           <TextInput placeholder="Name" style={styles.textInput} placeholderTextColor="grey" ref={refName} onChangeText={(name)=> {if(mounted) setHospital({name: name, address: Hospital.address})}} value={Hospital.name}/>
         </View>
         <Text style={{...styles.text_footer, marginTop:25}}>Address</Text>
-          <GooglePlacesAutocomplete 
-            placeholder='Search'
-            onPress={(data, details = null) => {
-              // 'details' is provided when fetchDetails = true
-              console.log(data, details);
-            }}
-            query={{
-              key: 'YOUR API KEY',
-              language: 'ro',
-              components: 'country:romania',
-            }}
-            ref={refName} onChangeText={(address)=> {if(mounted) setHospital({name: Hospital.name, address: address})}} value={Hospital.address}
-          />
+        <View style={styles.action}>
+          <TextInput placeholder="Address" style={styles.textInput} placeholderTextColor="grey" ref={refAddress} onChangeText={(address)=> {if(mounted) setHospital({name: Hospital.name, address: address})}} value={Hospital.address}/>
+        </View>
+          
       </SafeAreaView>
       <View style={styles.signInButton}>
-        <Text style={{ fontSize: 18, color:'white'}} onPress={() => submitFunc(Patient,'patients')}> 
+        <Text style={{ fontSize: 18, color:'white'}} onPress={() => submitFunc(Hospital,'hospitals')}> 
           Submit
         </Text>
       </View>
