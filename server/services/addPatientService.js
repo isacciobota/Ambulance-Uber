@@ -1,5 +1,5 @@
 const Patient = require('../models/Patient');
-const patientValidation = require('../validations/PatientValidation');
+const patientValidation = require('../validations/patientValidation');
 
 const addPatientService = async (data) => {
     const {error} = patientValidation.addPatientValidation(data);
