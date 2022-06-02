@@ -18,6 +18,10 @@ const PatientSchema = new Schema({
         type: String,
         required: true
     },
+    hospital: {
+        type: String,
+        required: true
+    },
     pictures: {
         type: [String]
     }
