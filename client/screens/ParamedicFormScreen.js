@@ -32,10 +32,6 @@ export default function ParamedicFormScreen() {
         <View style={styles.action}>
           <TextInput placeholder="Password" style={styles.textInput} placeholderTextColor="grey" ref={refPassword} onChangeText={(password)=> {if(mounted) setParamedic({name: Paramedic.name, username: Paramedic.username, email: Paramedic.email, password:password, token:Paramedic.token})}} value={Paramedic.password}/>
         </View>
-        <Text style={{...styles.text_footer, marginTop:15}}>Token</Text>
-        <View style={styles.action}>
-          <TextInput placeholder="Token" style={styles.textInput} placeholderTextColor="grey" ref={refToken} onChangeText={(name)=> {if(mounted) setParamedic({name: Paramedic.name, username: Paramedic.username, email: Paramedic.email, password:Paramedic.password, token:token})}} value={Paramedic.token}/>
-        </View>
       </SafeAreaView>
       <View style={styles.signInButton}>
         <Text style={{ fontSize: 18, color:'white'}} onPress={() => submitFunc(Paramedic,'paramedics')}> 

@@ -33,7 +33,7 @@ export default class ForgotPasswordScreen extends Component {
           <Text style={{...styles.text_footer, marginTop:15}}>Email</Text>
           <View style={styles.action}>
             <Feather name="mail" color='#1c92ab' size={20}/>
-            <TextInput placeholder="Your email" secureTextEntry={true} style={styles.textInput} autoCapitalize="none" placeholderTextColor="grey" ref="email" onChangeText={(email)=> this.setState({email: email})} value={this.state.email}/>
+            <TextInput placeholder="Your email" style={styles.textInput} autoCapitalize="none" placeholderTextColor="grey" ref="email" onChangeText={(email)=> this.setState({email: email})} value={this.state.email}/>
           </View>
         </SafeAreaView>
  

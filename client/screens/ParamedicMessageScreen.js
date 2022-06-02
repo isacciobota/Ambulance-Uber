@@ -81,7 +81,7 @@ const ParamedicMessagesScreen = ({navigation}) => {
         <Entypo style={{padding:8, marginHorizontal: 20, marginTop:3}} name="magnifying-glass" color='black' size={22}/>
       </View>
 
-      <View style={{height: height-184}}>
+      <View style={{height: height-209}}>
         <FlatList 
           data={Messages}
           keyExtractor={item=>item.id}

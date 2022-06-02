@@ -50,10 +50,6 @@ export default function DoctorFormScreen() {
         <View style={styles.action}>
           <TextInput placeholder="Password" style={styles.textInput} placeholderTextColor="grey" ref={refPassword} onChangeText={(password)=> {if(mounted)setDoctor({name: Doctor.name, username: Doctor.username, email: Doctor.email, password:password, token:Doctor.token, hospital: Doctor.hospital})}} value={Doctor.password}/>
         </View>
-        <Text style={{...styles.text_footer, marginTop:15}}>Token</Text>
-        <View style={styles.action}>
-          <TextInput placeholder="Token" style={styles.textInput} placeholderTextColor="grey" ref={refToken} onChangeText={(token)=> {if(mounted)setDoctor({name: Doctor.name, username: Doctor.username, email: Doctor.email, password:Doctor.password, token:token, hospital: Doctor.hospital})}} value={Doctor.token}/>
-        </View>
         <View style={{flexDirection: 'row',}}>
           <Text style={{...styles.text_footer, marginTop:16}}>Hospital:</Text>
           <Picker selectedValue={selectedValue} mode="dropdown" style={{height: 30, width: width/3, marginLeft: 10}} 

@@ -23,7 +23,7 @@ export default function ViewHospitalScreen() {
         <Entypo style={{padding:8, marginHorizontal: 20, marginTop:3}} name="magnifying-glass" color='black' size={22}/>
       </View>
 
-      <View style={{height: height-210}}>
+      <View style={{height: height-224}}>
       <ScrollView>
         { Hospitals.map((item) => {
         item.key=item.username;

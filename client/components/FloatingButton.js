@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
   },
   secondary: {
     width: width/2,
-    padding: 10,
+    padding: 12,
     position: "absolute",
     backgroundColor: "#FFF",
     alignItems: "center",

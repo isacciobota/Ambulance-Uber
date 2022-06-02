@@ -30,7 +30,7 @@ export default class ChangePasswordScreen extends Component {
           <View style={styles.action}>
               <Text style={{ fontSize: 15, color:'gray'}}>{this.state.error}</Text>
             <Feather name="lock" color='#1c92ab' size={20}/>
-            <TextInput placeholder="Your current password" style={styles.textInput} placeholderTextColor="grey" ref="password" onChangeText={(password)=> this.setState({password: password})} value={this.state.password}/>
+            <TextInput placeholder="Your current password" secureTextEntry={true} style={styles.textInput} placeholderTextColor="grey" ref="password" onChangeText={(password)=> this.setState({password: password})} value={this.state.password}/>
           </View>
           <Text style={{...styles.text_footer, marginTop:15}}>New password</Text>
           <View style={styles.action}>
