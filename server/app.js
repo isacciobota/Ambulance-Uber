@@ -26,7 +26,7 @@ app.use('/email', emailRoutes);
 
 // Connect to db
 mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => app.listen(process.env.PORT, () => console.log(`Server Running on Port: http://localhost:${process.env.PORT}`)))
+    .then(() => app.listen(3002, () => console.log(`Server Running on Port: http://localhost:${process.env.PORT}`)))
     .catch((error) => console.log(`${error} did not connect`));
 
 
