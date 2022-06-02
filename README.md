@@ -18,6 +18,7 @@ Utilizatorii platformei se vor imparti in 3 categorii: **administrator**, **para
 * React Native
 * Node.js
 * Mongodb as database
+* AWS as cloud service
 
 ### Echipa
 * Bancila Emanuel
