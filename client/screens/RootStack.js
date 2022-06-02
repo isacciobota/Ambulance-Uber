@@ -77,7 +77,7 @@ const RootStack = () => {
           }}
           name="ForgotPasswordScreen" component={ForgotPasswordScreen} />  
         <Stack.Screen options={{
-            title: 'Hello '+window.userLogat+"!",
+            title: 'Hello '+"!",
             headerLeft: null,
             headerTitleStyle: {
               color: 'white',
@@ -97,7 +97,7 @@ const RootStack = () => {
           }}
           name="DoctorScreen" component={DoctorScreen} />
         <Stack.Screen options={{
-            title: 'Hello '+window.userLogat+"!",
+            title: 'Hello '+"!",
             headerLeft: null,
             headerTitleStyle: {
               color: 'white',
