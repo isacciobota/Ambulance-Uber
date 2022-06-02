@@ -6,13 +6,14 @@ const addPatientService = async (data) => {
     if (error)
         return new Error(error.details[0].message);
 
-    const {name, sex, age, description, pictures} = data;
+    const {name, sex, age, description,hospital, pictures} = data;
 
     const patient = new Patient({
         name,
         sex,
         age,
         description,
+        hospital,
         pictures
     });
 

@@ -51,6 +51,7 @@ export default function PatientPatientsScreen() {
               </View>
               <View style={{flexDirection: 'row',}}>
                 <Text style={styles.entityField}>• {item.description}</Text>
+                <Text style={styles.entityField}>• {item.hospital}</Text>
               </View>
             </View>
           )
