@@ -31,13 +31,13 @@ export default function ViewAdministratorScreen() {
               <View style={{flexDirection: 'row',}}>
                 {/* Aici e Name practic */}
                 <Text style={styles.entityName}>{item.name}</Text>
-            <TapGestureHandler onHandlerStateChange={  () => fetch(window.URL+'admins/'+item._id, { method: 'DELETE' }) }>
+            <TapGestureHandler onHandlerStateChange={  () => fetch(window.URL+'admins/'+item._id, { method: 'DELETE', headers: { 'auth-token': [window.token] }  }) }>
                 <FontAwesome style={styles.entityIcon} name="trash-o" size={19} color='black'/>
                 </TapGestureHandler>
               </View>
               <View style={{backgroundColor: 'white', height:3, width:width, marginBottom: 5}}></View>
               <View style={{flexDirection: 'row',}}>
-                <Text style={styles.entityField}>• {item.token}</Text>
+                <Text style={styles.entityField}>• {item.username}</Text>
               </View>
             </View>
           )

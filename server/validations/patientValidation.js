@@ -8,6 +8,7 @@ const addPatientValidation = (data) => {
         sex: Joi.string().min(1).max(7).required(),
         age: Joi.string().required(),
         description: Joi.string().required(),
+        hospital: Joi.string().required(),
         pictures: Joi.string()
     });
 

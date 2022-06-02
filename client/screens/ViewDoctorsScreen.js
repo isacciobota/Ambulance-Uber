@@ -32,7 +32,7 @@ export default function ViewDoctorScreen() {
               <View style={{flexDirection: 'row',}} key={item.key}>
                 {/* Aici e Name practic */}
                 <Text style={styles.entityName}>{item.name}</Text>
-            <TapGestureHandler onHandlerStateChange={  () => fetch(window.URL+'doctors/'+item._id, { method: 'DELETE' }) }>
+            <TapGestureHandler onHandlerStateChange={  () => fetch(window.URL+'doctors/'+item._id, { method: 'DELETE', headers: { 'auth-token': [window.token] }  }) }>
                 <FontAwesome style={styles.entityIcon} name="trash-o" size={19} color='black'/>
                 </TapGestureHandler>
               </View>

@@ -31,14 +31,13 @@ export default function ViewParamedicScreen() {
               <View style={{flexDirection: 'row',}} key={item.key}>
                 {/* Aici e Name practic */}
                 <Text style={styles.entityName}>{item.name}</Text>
-            <TapGestureHandler onHandlerStateChange={  () => fetch(window.URL+'paramedics/'+item._id, { method: 'DELETE' }) }>
+            <TapGestureHandler onHandlerStateChange={  () => fetch(window.URL+'paramedics/'+item._id, { method: 'DELETE' , headers: { 'auth-token': [window.token] } }) }>
                 <FontAwesome style={styles.entityIcon} name="trash-o" size={19} color='black'/>
                 </TapGestureHandler>
               </View>
               <View style={{backgroundColor: 'white', height:3, width:width, marginBottom: 5}}></View>
               <View style={{flexDirection: 'row',}}>
                 <Text style={styles.entityField}>• {item.username}</Text>
-                <Text style={styles.entityField2}>• {item.token}</Text>
               </View>
               <View style={{flexDirection: 'row',}}>
                 <Text style={styles.entityField}>• {item.email}</Text>

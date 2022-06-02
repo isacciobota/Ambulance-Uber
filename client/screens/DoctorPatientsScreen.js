@@ -40,7 +40,7 @@ export default function PatientPatientsScreen() {
                 {/* Aici e Name practic */}
                 <Text style={styles.entityName}>{item.name}</Text> 
                 {/* Cand dai pe iconita, da delete la pacient */}
-            <TapGestureHandler onHandlerStateChange={  () => fetch(window.URL+'patients/'+item._id, { method: 'DELETE' }) } key={item.key}>
+            <TapGestureHandler onHandlerStateChange={  () => fetch(window.URL+'patients/'+item._id, { method: 'DELETE', headers: { 'auth-token': [window.token] }  }) } key={item.key}>
                 <FontAwesome style={styles.entityIcon} name="trash-o" size={19} color='black'/>
                 </TapGestureHandler>
               </View>

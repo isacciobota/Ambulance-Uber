@@ -32,18 +32,13 @@ export default function ViewHospitalScreen() {
               <View style={{flexDirection: 'row',}} key={item.key}>
                 {/* Aici e Name practic */}
                 <Text style={styles.entityName}>{item.name}</Text>
-            <TapGestureHandler onHandlerStateChange={  () => fetch(window.URL+'hospitals/'+item._id, { method: 'DELETE' }) }>
+            <TapGestureHandler onHandlerStateChange={  () => fetch(window.URL+'hospitals/'+item._id, { method: 'DELETE', headers: { 'auth-token': [window.token] }  }) }>
                 <FontAwesome style={styles.entityIcon} name="trash-o" size={19} color='black'/>
                 </TapGestureHandler>
               </View>
               <View style={{backgroundColor: 'white', height:3, width:width, marginBottom: 5}}></View>
               <View style={{flexDirection: 'row',}}>
-                <Text style={styles.entityField}>• {item.username}</Text>
-                <Text style={styles.entityField2}>• {item.token}</Text>
-              </View>
-              <View style={{flexDirection: 'row',}}>
-                <Text style={styles.entityField}>• Spital</Text>
-                <Text style={styles.entityField2}>• Email</Text> 
+                <Text style={styles.entityField}>• {item.address}</Text>
               </View>
             </View>
           )
