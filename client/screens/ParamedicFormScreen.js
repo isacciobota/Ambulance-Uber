@@ -5,13 +5,13 @@ const { width, height } = Dimensions.get('window');
 import {submitFunc} from '../services/buttons'
 
 export default function ParamedicFormScreen() {
+  let mounted = true;
   const [Paramedic, setParamedic] = useState({
                                            });
   const refName = useRef(null);
   const refUsername = useRef(null);
   const refPassword = useRef(null);
   const refEmail = useRef(null);
-  const refToken = useRef(null);
   return (
     <KeyboardAvoidingView style={{ flex: 1, backgroundColor: 'white', justifyContent: 'flex-start', }} enabled>
     <GestureHandlerRootView style={{ flex: 1, backgroundColor: 'white', justifyContent: 'flex-start'}}>

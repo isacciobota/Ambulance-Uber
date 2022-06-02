@@ -39,11 +39,10 @@ export default function ViewDoctorScreen() {
               <View style={{backgroundColor: 'white', height:3, width:width, marginBottom: 5}}></View>
               <View style={{flexDirection: 'row',}}>
                 <Text style={styles.entityField}>• {item.username}</Text>
-                <Text style={styles.entityField2}>• {item.token}</Text>
+                <Text style={styles.entityField2}>• {item.hospital}</Text>
               </View>
-              <View style={{flexDirection: 'row',}}>
-                <Text style={styles.entityField}>• {item.hospital}</Text>
-                <Text style={styles.entityField2}>• {item.email}</Text>
+              <View style={{flexDirection: 'row',}}>      
+                <Text style={styles.entityField}>• {item.email}</Text>
               </View>
             </View>
           )
